@@ -1,2 +1,2 @@
-# Great British Many Quiz
+# Great British Money Quiz
 
