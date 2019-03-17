@@ -8,7 +8,7 @@ It's an app to test kids financial knowledgement level before give them 5-days t
 - Students first and second quizzes.
 - 5-days training (1 training per day).
 - View results for first quiz.
-- View result as a comparance between fisrst and second quiz.
+- View result as a comparance between first and second quiz.
 
 ### For Admin
 - Login.
