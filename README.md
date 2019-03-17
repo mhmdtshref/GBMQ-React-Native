@@ -19,7 +19,7 @@ It's an app to test kids financial knowledgement level before give them 5-days t
 - Framework: [Express.js](https://expressjs.com/en/4x/api.html)
 - Database: [SequelizeJS](http://docs.sequelizejs.com/manual/getting-started.html)
 
-### Fronend: 
+### Frontend: 
 - Framework: [React.js](https://reactjs.org/docs/getting-started.html)
 - Statistcs: [CanvasJS](https://canvasjs.com/react-charts/pie-chart/)
 - Routing: [React Router](https://reacttraining.com/react-router/)
