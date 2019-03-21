@@ -1,12 +1,12 @@
 const express = require('express');
-const path = require('path');
-//const controllers = require('./controllers');
-//const validations = require('./validations');
+// const path = require('path');
+// const controllers = require('./controllers');
+// const validations = require('./validations');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.send('Hello World!');
+  res.send('Hello World!');
 });
 
 
