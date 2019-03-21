@@ -1,2 +1,5 @@
 .idea/
 node_modules/
+student/.cache/
+student/dist/
+
