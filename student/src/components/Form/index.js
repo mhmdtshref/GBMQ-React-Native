@@ -80,9 +80,9 @@ class MainForm extends Component {
       })
       .catch(err => {
         this.setState({
-          message: <StyledFailMessage>فشل العملية</StyledFailMessage>
+          message: <StyledFailMessage>Failed</StyledFailMessage>
         });
-        alert("فشل العملية، السبب: " + err);
+        alert("Failed:" + err);
       });
   };
 
