@@ -14,6 +14,29 @@ export const StyledChoicesList = styled(ChoicesList)`
 `;
 
 export const StyledQuestion = styled.div`
-    background-color: #6256EA;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.35), rgb(98, 86, 234));
+    background-color: rgb(98, 86, 234);
     height: 100vh;
+`;
+
+export const StyledSign = styled.div`
+    width: 40vw;
+    margin: -1.2vw 30vw 4vw 30vw;
+    color: #FEFFFF;
+    position: relative;
+    text-align: center;
+`;
+
+export const StyledSignImg = styled.img`
+    width: 100%;
+`;
+
+export const StyledSignText = styled.div`
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FEFFFF;
+    font-weight: 700;
 `;
