@@ -12,9 +12,9 @@ import {
 } from "./index.style";
 
 class MainForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { dateFieldsValues: {} };
+  constructor() {
+    super();
+    this.state={};
   }
 
   getSelectOptions(options) {
@@ -60,18 +60,11 @@ class MainForm extends Component {
     });
     return renderedFields;
   };
-
-  updateDatesState = (name, value) => {
-    const newFieldsValues = this.state.dateFieldsValues;
-    newFieldsValues[name] = value;
-    this.setState({ dateFieldsValues: newFieldsValues });
-  };
-
   onFormSubmit = (values, { resetForm }) => {
     //console.log("Values submitted ::", values);
     const fullValues = { ...this.props.initialValues, ...values };
     this.props
-      .action({ ...fullValues, ...this.state.dateFieldsValues })
+      .action({ ...fullValues,})
       .then(successMessage => {
         resetForm(this.props.initialValues);
         this.setState({

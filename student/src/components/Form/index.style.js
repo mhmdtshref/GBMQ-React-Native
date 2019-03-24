@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Form, Field } from "formik";
-import Button from '../Button/index';
 
 export const StyledForm = styled(Form)`
 display: flex;
@@ -52,10 +51,4 @@ export const StyledFailMessage = styled.p`
 `;
 
 export const StyledMessage = styled.div`
-`;
-
-export const StyledButton = styled(Button)`
-background: #38BEFD;
-border-radius: 20px;
-width: 40%;
 `;

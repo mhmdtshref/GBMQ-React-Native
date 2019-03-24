@@ -5,7 +5,6 @@
   "dependencies": {
     "eslint-config-react-minimal": "^1.0.0",
     "formik": "^1.5.1",
-    "parcel": "^1.12.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8",
