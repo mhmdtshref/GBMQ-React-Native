@@ -29,7 +29,7 @@ export const StyledField = styled(Field)`
   justify-content:center;
   border-radius: 50px;
   border-color:#08A3C3;
-  margin-top:10px;
+  margin-bottom:10px;
   background: #FFFFFF;
   border: 0.5px solid #909DA4;
   box-sizing: border-box;

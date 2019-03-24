@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
-import Button from '../Button';
+import Button from "../Button";
 
 import {
   StyledForm,
@@ -8,69 +8,98 @@ import {
   StyledLabel,
   StyledMessage,
   StyledSuccessMessage,
-  StyledFailMessage,
+  StyledFailMessage
 } from "./index.style";
 
 class MainForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {dateFieldsValues: {}};
+    this.state = { dateFieldsValues: {} };
   }
 
-  static getSelectOptions(options) {
-    return options.map((o) => {
+  getSelectOptions(options) {
+    return options.map(o => {
       return <option value={o.value}> {o.label}</option>;
+    });
+  }
+  generateRadioOptions(options) {
+    return options.map(o => {
+      return <React.Fragment> <input type="radio" value={o.value} /> {o.lable}</React.Fragment>;
     });
   }
 
   renderFields = () => {
-    const renderedFields = this.props.fields.map((f) => {
+    const renderedFields = this.props.fields.map(f => {
       switch (f.type) {
-        case 'text':
-          return <StyledLabel>{f.label}
-            <StyledField
-              type={f.type}
-              name={f.name}
-              placeholder={f.placeholder}
-            />
-          </StyledLabel>;
+        case "text":
+          return (
+            <StyledLabel>
+              <StyledField
+                type={f.type}
+                name={f.name}
+                placeholder={f.placeholder}
+              />
+            </StyledLabel>
+          );
+        case "select":
+          return (
+            <StyledLabel>
+              <StyledField type="select" component={f.component} name={f.name}>
+                {this.getSelectOptions(f.options)}
+              </StyledField>
+            </StyledLabel>
+          );
+        case "radio":
+          return (
+            <StyledLabel>
+              {f.label} <br/>
+                {this.generateRadioOptions(f.options)}
+            </StyledLabel>
+          );
       }
     });
     return renderedFields;
-  }
+  };
 
   updateDatesState = (name, value) => {
-    const newFieldsValues = (this.state.dateFieldsValues);
+    const newFieldsValues = this.state.dateFieldsValues;
     newFieldsValues[name] = value;
-    this.setState({dateFieldsValues: newFieldsValues});
-  }
+    this.setState({ dateFieldsValues: newFieldsValues });
+  };
 
   onFormSubmit = (values, { resetForm }) => {
     //console.log("Values submitted ::", values);
     const fullValues = { ...this.props.initialValues, ...values };
-    (this.props.action({ ...fullValues, ...this.state.dateFieldsValues }))
-      .then((successMessage) => {
+    this.props
+      .action({ ...fullValues, ...this.state.dateFieldsValues })
+      .then(successMessage => {
         resetForm(this.props.initialValues);
-        this.setState({ message: <StyledSuccessMessage>{successMessage}</StyledSuccessMessage> });
+        this.setState({
+          message: <StyledSuccessMessage>{successMessage}</StyledSuccessMessage>
+        });
       })
-      .catch((err) => {
-        this.setState({ message: <StyledFailMessage>فشل العملية</StyledFailMessage>});
-          alert("فشل العملية، السبب: " + err);
+      .catch(err => {
+        this.setState({
+          message: <StyledFailMessage>فشل العملية</StyledFailMessage>
+        });
+        alert("فشل العملية، السبب: " + err);
       });
   };
 
   render() {
     return (
-      <Formik onSubmit={this.onFormSubmit} initialValues={this.props.initialValues}>
+      <Formik
+        onSubmit={this.onFormSubmit}
+        initialValues={this.props.initialValues}
+      >
         <StyledForm>
           {this.renderFields()}
           <StyledMessage>{this.state.message}</StyledMessage>
-          <Button value="Login"/>
+          <Button value="Login" />
         </StyledForm>
       </Formik>
     );
   }
-
 }
 
 export default MainForm;
