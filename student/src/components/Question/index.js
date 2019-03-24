@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ChoicesList from "../ChoicesList";
+import Image from "../Image";
 
 class Question extends Component {
 
@@ -7,7 +8,7 @@ class Question extends Component {
         super(props);
         this.state = {
             text: '',
-            imgUrl: '',
+            imgName: '',
             choices: [],
         }
     };
@@ -42,7 +43,7 @@ class Question extends Component {
                     id:"4",
                 }
             ];
-            const questionData = { imgUrl: '', text: 'This is the first question', choices };
+            const questionData = { imgName: 'question1.jpg', text: 'This is the first question', choices };
             if(!questionData){
                 reject(new Error('No Question Data!'));
             } else {
@@ -51,10 +52,11 @@ class Question extends Component {
         });
     };
 
+
     render() {
         return (
             <React.Fragment>
-                <img src={this.state.imgUrl} />
+                <Image url={`/public/images/questions/${this.state.imgName}`} />
                 <p>{this.state.text}</p>
                 <ChoicesList type={true} choices={this.state.choices}/>
             </React.Fragment>
