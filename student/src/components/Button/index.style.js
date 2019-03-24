@@ -9,4 +9,5 @@ height: 44px;
 left: 89px;
 top: 120px;
 color:white;
+border:none;
 `;
