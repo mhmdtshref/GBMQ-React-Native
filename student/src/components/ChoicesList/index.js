@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Choice from "../Choice";
+import { StyledChoicesList } from "./index.style";
 
 class ChoicesList extends Component {
 
@@ -8,11 +9,11 @@ class ChoicesList extends Component {
     };
 
     renderChoices = () => (this.props.choices).map((choice) => {
-            return <Choice text={choice.text} choiceId={choice.id}/>
+            return <Choice text={choice.text} choiceId={choice.id} name="questionChoices"/>
         });
 
     render() {
-        return this.renderChoices();
+        return <StyledChoicesList>{this.renderChoices()}</StyledChoicesList>;
     }
 }
 export default ChoicesList;
