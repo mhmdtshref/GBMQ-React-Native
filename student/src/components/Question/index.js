@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ChoicesList from "../ChoicesList";
+import { StyledText, StyledChoicesList, StyledQuestion } from "./index.style";
 import Image from "../Image";
 
 class Question extends Component {
@@ -27,23 +27,24 @@ class Question extends Component {
         return new Promise((resolve, reject) => {
             const choices = [
                 {
-                    text: 'This is first choice!',
+                    text: 'Savings Account',
                     id:"1",
                 },
                 {
-                    text: 'This is second choice!',
+                    text: 'Credit Card',
                     id:"2",
                 },
                 {
-                    text: 'This is third choice!',
+                    text: 'Mortgage',
                     id:"3",
                 },
                 {
-                    text: 'This is fourth choice!',
+                    text: 'Pension',
                     id:"4",
                 }
             ];
-            const questionData = { imgName: 'question1.jpg', text: 'This is the first question', choices };
+            const text = 'What term describes a common way to buy a house?';
+            const questionData = { imgName: 'question1.jpg', text, choices };
             if(!questionData){
                 reject(new Error('No Question Data!'));
             } else {
@@ -55,11 +56,11 @@ class Question extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <StyledQuestion>
                 <Image url={`/public/images/questions/${this.state.imgName}`} />
-                <p>{this.state.text}</p>
-                <ChoicesList type={true} choices={this.state.choices}/>
-            </React.Fragment>
+                <StyledText>{this.state.text}</StyledText>
+                <StyledChoicesList type={true} choices={this.state.choices}/>
+            </StyledQuestion>
         );
     };
 }
