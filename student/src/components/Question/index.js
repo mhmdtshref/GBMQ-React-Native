@@ -13,7 +13,7 @@ class Question extends Component {
             questionNumber: '',
             choices: [],
         }
-    };
+    }
 
     componentDidMount(){
         this.getQuestionData(this.props.questionId)
@@ -55,7 +55,7 @@ class Question extends Component {
                 resolve(questionData);
             }
         });
-    };
+    }
 
 
     render() {
@@ -71,6 +71,6 @@ class Question extends Component {
                 <StyledChoicesList type={true} choices={this.state.choices} onCheck={this.props.onCheck} questionId={this.props.questionId} />
             </StyledQuestion>
         );
-    };
+    }
 }
 export default Question;

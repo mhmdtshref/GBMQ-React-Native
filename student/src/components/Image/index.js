@@ -5,7 +5,7 @@ class Image extends Component {
 
     constructor(props){
         super(props);
-    };
+    }
 
     render(){
         return <StyledImage src={this.props.url} />
