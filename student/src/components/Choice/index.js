@@ -10,7 +10,7 @@ class Choice extends Component {
     render() {
         return (
             <React.Fragment>
-                <StyledChoice>
+                <StyledChoice onClick={this.props.onCheck}>
                     <StyledInput type="radio" value={this.props.id} name={this.props.name} />
                     <StyledLabel>{this.props.text}</StyledLabel>
                 </StyledChoice>
