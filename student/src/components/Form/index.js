@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
-import Button from "../Button";
 
 import {
   StyledForm,
@@ -90,7 +89,6 @@ class MainForm extends Component {
         <StyledForm>
           {this.renderFields()}
           <StyledMessage>{this.state.message}</StyledMessage>
-          <Button value="Login" />
         </StyledForm>
       </Formik>
     );
