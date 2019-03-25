@@ -4,9 +4,10 @@
   "description": "Great British Money Quiz",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/server.js",
-    "eslint":"eslint ./src/",
-    "eslint:fix":"eslint --fix ./src/"
+    "build:student": "cd student && npm start",
+    "start": "cd student && npm run build && cd .. && node ./src/server.js",
+    "eslint": "eslint ./src/",
+    "eslint:fix": "eslint --fix ./src/"
   },
   "repository": {
     "type": "git",
