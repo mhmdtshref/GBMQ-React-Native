@@ -14,7 +14,9 @@ import {
 class MainForm extends Component {
   constructor() {
     super();
-    this.state={};
+    this.state={
+      message: ''
+    };
   }
 
   getSelectOptions(options) {
@@ -64,7 +66,7 @@ class MainForm extends Component {
     //console.log("Values submitted ::", values);
     const fullValues = { ...this.props.initialValues, ...values };
     this.props
-      .action({ ...fullValues,})
+      .action(fullValues)
       .then(successMessage => {
         resetForm(this.props.initialValues);
         this.setState({
