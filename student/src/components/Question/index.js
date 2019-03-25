@@ -59,6 +59,7 @@ class Question extends Component {
 
 
     render() {
+        // TODO: StyledChoicesList component should get onCheck function which passed from props.
         return (
             <StyledQuestion>
                 <Image url={`/public/images/questions/${this.state.imgName}`} />
@@ -67,7 +68,7 @@ class Question extends Component {
                     <StyledSignText>{this.state.questionNumber}/20</StyledSignText>
                 </StyledSign>
                 <StyledText>{this.state.text}</StyledText>
-                <StyledChoicesList type={true} choices={this.state.choices}/>
+                <StyledChoicesList type={true} choices={this.state.choices} onCheck={this.props.onCheck} questionId={this.props.questionId} />
             </StyledQuestion>
         );
     };
