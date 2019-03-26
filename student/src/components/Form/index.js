@@ -10,6 +10,7 @@ import {
   StyledSuccessMessage,
   StyledFailMessage
 } from "./index.style";
+import Choice from "../Choice";
 
 class MainForm extends Component {
   constructor() {
@@ -24,15 +25,12 @@ class MainForm extends Component {
       return <option value={o.value}> {o.label}</option>;
     });
   }
-  generateRadioOptions(options) {
+  generateRadioOptions(options, name) {
     return options.map(o => {
-      return (
-        <React.Fragment>
-          {" "}
-          <input type="radio" value={o.value} /> {o.lable}
-        </React.Fragment>
-      );
+      return <Choice text={o.value} choiceId={o.value} name={name} onCheck={() => { return 0; }} />;
     });
+      //<input type="radio" value={o.value} /> {o.lable}
+      // TODO: Create Better Choice, maybe use different component!
   }
 
   renderFields = () => {
@@ -48,6 +46,16 @@ class MainForm extends Component {
               />
             </StyledLabel>
           );
+        case "password":
+          return (
+              <StyledLabel>
+                  <StyledField
+                      type={f.type}
+                      name={f.name}
+                      placeholder={f.placeholder}
+                  />
+              </StyledLabel>
+          );
         case "select":
           return (
             <StyledLabel>
@@ -60,7 +68,7 @@ class MainForm extends Component {
           return (
             <StyledLabel>
               {f.label} <br />
-              {this.generateRadioOptions(f.options)}
+              {this.generateRadioOptions(f.options, f.label)}
             </StyledLabel>
           );
       }
@@ -70,6 +78,7 @@ class MainForm extends Component {
   onFormSubmit = (values, { resetForm }) => {
     //console.log("Values submitted ::", values);
     const fullValues = { ...this.props.initialValues, ...values };
+    console.log("This is the props:", fullValues);
     this.props
       .action(fullValues)
       .then(successMessage => {
