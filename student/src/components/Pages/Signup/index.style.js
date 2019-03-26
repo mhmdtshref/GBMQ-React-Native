@@ -6,7 +6,7 @@ padding: 0;
 `;
 
 export const StyledTitle = styled.h1`
-font-size: 30px;
+font-size: 9vw;
 font-family: 'Black Han Sans', sans-serif;
 color: #2D55CF;
 text-align: center;
