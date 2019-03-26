@@ -54,4 +54,24 @@ export const StyledFailMessage = styled.p`
   color: red;
 `;
 
+export const StyledRadioLabel = styled.label`
+    color: #000000;
+    font-weight: 600;
+    vertical-align: super;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 2vw;
+`;
+
+export const StyledRadioInput = styled.input`
+    width: 6vw;
+    height: 6vw;
+`;
+
+export const StyledRadioChoice = styled.div`
+    margin: 1vh 0px;
+    display: inline;
+`;
+
+
+
 export const StyledMessage = styled.div``;

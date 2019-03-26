@@ -8,15 +8,20 @@ import {
   StyledLabel,
   StyledMessage,
   StyledSuccessMessage,
-  StyledFailMessage
+  StyledFailMessage,
+  StyledRadioLabel,
+  StyledRadioInput,
+  StyledRadioChoice,
 } from "./index.style";
 import Choice from "../Choice";
+import {StyledChoice, StyledInput} from "../Choice/index.style";
 
 class MainForm extends Component {
   constructor() {
     super();
     this.state = {
-      message: ""
+      message: "",
+      radios: {},
     };
   }
 
@@ -25,11 +30,26 @@ class MainForm extends Component {
       return <option value={o.value}> {o.label}</option>;
     });
   }
+
+  onRadioClick = (name, value) => {
+    this.setState((prevState) => {
+      let newRadios = prevState.radios;
+      newRadios[name] = value;
+      return { radios: newRadios };
+    });
+    setTimeout(() => { console.log(this.state) }, 1000);
+  };
   generateRadioOptions(options, name) {
     return options.map(o => {
-      return <Choice text={o.value} choiceId={o.value} name={name} onCheck={() => { return 0; }} />;
+      return (
+          <StyledRadioChoice onClick={() => { this.onRadioClick(name, o.value); }}>
+              <StyledRadioInput type="radio" value={o.value} name={name} />
+              <StyledRadioLabel>{o.label}</StyledRadioLabel>
+          </StyledRadioChoice>
+      );
     });
-      //<input type="radio" value={o.value} /> {o.lable}
+      // <input type="radio" value={o.value} /> {o.lable}
+      // <Choice text={o.value} choiceId={o.value} name={name} onCheck={() => { console.log("Checked is: ", o.value) }} />;
       // TODO: Create Better Choice, maybe use different component!
   }
 
@@ -67,26 +87,20 @@ class MainForm extends Component {
         case "radio":
           return (
             <StyledLabel>
-              {f.label} <br />
-              {this.generateRadioOptions(f.options, f.label)}
+              {f.text} <br />
+              {this.generateRadioOptions(f.options, f.name)}
             </StyledLabel>
           );
       }
     });
     return renderedFields;
   };
-  onFormSubmit = (values, { resetForm }) => {
+  onFormSubmit = (values) => {
     //console.log("Values submitted ::", values);
-    const fullValues = { ...this.props.initialValues, ...values };
+    const fullValues = { ...this.props.initialValues, ...values, ...this.state.radios };
     console.log("This is the props:", fullValues);
     this.props
       .action(fullValues)
-      .then(successMessage => {
-        resetForm(this.props.initialValues);
-        this.setState({
-          message: <StyledSuccessMessage>{successMessage}</StyledSuccessMessage>
-        });
-      })
       .catch(err => {
         this.setState({
           message: <StyledFailMessage>Failed</StyledFailMessage>
