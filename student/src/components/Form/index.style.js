@@ -8,7 +8,7 @@ export const StyledForm = styled(Form)`
   flex-flow: column wrap;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 10vh;
   margin-left: 50px;
   width: 70%;
   position: relative;
@@ -17,6 +17,9 @@ export const StyledForm = styled(Form)`
 
 export const StyledLabel = styled.label`
   width: 100%;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
 `;
 
 export const StyledField = styled(Field)`
@@ -29,11 +32,11 @@ export const StyledField = styled(Field)`
   justify-content: center;
   border-radius: 50px;
   border-color: #08a3c3;
-  margin-bottom: 10px;
   background: #ffffff;
   border: 0.5px solid #909da4;
   box-sizing: border-box;
   border-radius: 25px;
+  padding-left: 4vh;
   ::placeholder {
     padding-left: 27px;
   }

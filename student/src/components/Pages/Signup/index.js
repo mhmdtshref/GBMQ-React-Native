@@ -35,7 +35,7 @@ class Signup extends Component {
             { type: "text", name:"username", placeholder: "Enter username"},
             { type: "text", name:"password", placeholder: "Enter password"},
             { label:"What is your gender ?", type:"radio", options: GenderOptions},
-            { label:"Is English your first or main language ?", type:"radio", options: EnglishOptions},
+            { label:"Is English your first language ?", type:"radio", options: EnglishOptions},
             { type: "select", component: "select", name: "ageranges", options: ageOptions},
             { type: "text", name:"postalcode", placeholder: "Postal Code"},
               ]
