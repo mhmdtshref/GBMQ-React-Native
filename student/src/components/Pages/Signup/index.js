@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-// import {StyledSignup} from "./index.style";
+import {StyledPage, StyledBk, StyledTitle } from "./index.style";
+import bg from './signup-bg.png';
 import Form from "../../Form/index";
 
 class Signup extends Component {
 
     constructor(props){
         super(props);
+    }
+
+    onSubmitAction = () => {
+      return 0;
     }
     render() {
 
@@ -36,7 +41,11 @@ class Signup extends Component {
               ]
         return (
           <React.Fragment >
-          <Form fields = {fields} operationName="Signup" initialValues = {initialValues}/>
+          <StyledPage>
+          <StyledBk src={bg}/>
+          <StyledTitle> Enter your information </StyledTitle>
+          <Form fields = {fields} action={this.onSubmitAction} operationName="Signup" initialValues = {initialValues}/>
+          </StyledPage>
           </React.Fragment>
         )
     }
