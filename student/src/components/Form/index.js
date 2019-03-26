@@ -14,8 +14,8 @@ import {
 class MainForm extends Component {
   constructor() {
     super();
-    this.state={
-      message: ''
+    this.state = {
+      message: ""
     };
   }
 
@@ -26,7 +26,12 @@ class MainForm extends Component {
   }
   generateRadioOptions(options) {
     return options.map(o => {
-      return <React.Fragment> <input type="radio" value={o.value} /> {o.lable}</React.Fragment>;
+      return (
+        <React.Fragment>
+          {" "}
+          <input type="radio" value={o.value} /> {o.lable}
+        </React.Fragment>
+      );
     });
   }
 
@@ -54,8 +59,8 @@ class MainForm extends Component {
         case "radio":
           return (
             <StyledLabel>
-              {f.label} <br/>
-                {this.generateRadioOptions(f.options)}
+              {f.label} <br />
+              {this.generateRadioOptions(f.options)}
             </StyledLabel>
           );
       }
