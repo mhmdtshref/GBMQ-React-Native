@@ -8,16 +8,17 @@ class Signup extends Component {
         super(props);
     }
     render() {
+      const initialValues = { username: "", password: "", postalcode: ""};
       const GenderOptions = [
-            {label: "Male", value:"Male"},
-            {label: "Female", value:"Female"}
+            {lable: "Male", value:"Male"},
+            {lable: "Female", value:"Female"}
               ];
       const EnglishOptions = [
-            {label: "Yes", value:"Yes"},
-            {label: "No", value:"No"}
+            {lable: "Yes", value:"Yes"},
+            {lable: "No", value:"No"}
               ];
       const ageOptions = [
-            {label: "Choose age range", value:"Choose age range"},
+            {label:"Choose age range", value:"Choose age range"},
             {label: "14", value:"14"},
             {label: "15", value:"15"},
             {label: "16", value:"16"},
@@ -28,13 +29,13 @@ class Signup extends Component {
             { type: "text", name:"username", placeholder: "Enter username"},
             { type: "text", name:"password", placeholder: "Enter password"},
             { label:"What is your gender ?", type:"radio", options: GenderOptions},
-            { label:'Is English your first or main language ?', type:"radio", options: EnglishOptions},
-            { type: 'select', component: 'select', name: 'ageranges', options: ageOptions},
-            { type: 'text', name:'postalcode', placeholder: 'Postal Code'},
+            { label:"Is English your first or main language ?", type:"radio", options: EnglishOptions},
+            { type: "select", component: "select", name: "ageranges", options: ageOptions},
+            { type: "text", name:"postalcode", placeholder: "Postal Code"},
               ]
         return (
           <React.Fragment >
-          <Form fields = {fields} />
+          <Form fields = {fields} operationName="Signup" initialValues = {initialValues}/>
           </React.Fragment>
         )
     }
