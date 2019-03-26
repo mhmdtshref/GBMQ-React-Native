@@ -11,6 +11,8 @@ flex-wrap: wrap;
 margin-top:20px;
 margin-left:50px;
 width: 70%;
+position: relative;
+z-index: 15;
 `;
 
 export const StyledLabel = styled.label`
