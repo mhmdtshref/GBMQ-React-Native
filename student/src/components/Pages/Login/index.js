@@ -12,8 +12,14 @@ import {
 import bg from "./login-bg.png";
 
 class Login extends Component {
-  onSubmitAction = () => {
-    return 0;
+  onSubmitAction = (values) => {
+    return new Promise((resolve, reject) => {
+      if(values){
+        resolve(values);
+      } else {
+        reject(new Error('No values found!'));
+      }
+    });
   };
 
   render() {
