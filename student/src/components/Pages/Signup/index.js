@@ -8,6 +8,7 @@ class Signup extends Component {
         super(props);
     }
     render() {
+
       const initialValues = { username: "", password: "", postalcode: ""};
       const GenderOptions = [
             {lable: "Male", value:"Male"},
