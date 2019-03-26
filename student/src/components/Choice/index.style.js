@@ -11,6 +11,8 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input`
     width: 6vw;
     height: 6vw;
+    max-width: 30px;
+    max-height: 30px
 `;
 
 export const StyledChoice = styled.div`
