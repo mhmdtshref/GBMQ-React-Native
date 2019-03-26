@@ -31,7 +31,7 @@ class Quiz extends Component {
     }
 
     onClickNext = () => {
-        this.setState((state) => ({questionCounter: ++state.questionCounter}) );
+        this.setState((prevState) => ({questionCounter: ++prevState.questionCounter}) );
     };
 
 
