@@ -10,7 +10,7 @@ class Quiz extends Component {
             questionCounter: 0,
             buttonValue: 'Next',
         };
-    };
+    }
 
     getQuestionsIDs = (quizId) => {
         return new Promise((resolve, reject) => {
@@ -45,7 +45,7 @@ class Quiz extends Component {
                 </React.Fragment>
             );
         }
-    };
+    }
 
 }
 
