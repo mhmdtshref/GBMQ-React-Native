@@ -6,15 +6,11 @@ import {
   StyledForm,
   StyledField,
   StyledLabel,
-  StyledMessage,
-  StyledSuccessMessage,
-  StyledFailMessage,
   StyledRadioLabel,
   StyledRadioInput,
   StyledRadioChoice,
+  StyledTitle
 } from "./index.style";
-import Choice from "../Choice";
-import {StyledChoice, StyledInput} from "../Choice/index.style";
 
 class MainForm extends Component {
   constructor() {
@@ -87,7 +83,7 @@ class MainForm extends Component {
         case "radio":
           return (
             <StyledLabel>
-              {f.text} <br />
+                <StyledTitle>{f.text}</StyledTitle>
               {this.generateRadioOptions(f.options, f.name)}
             </StyledLabel>
           );
@@ -95,16 +91,14 @@ class MainForm extends Component {
     });
     return renderedFields;
   };
+
+
   onFormSubmit = (values) => {
-    //console.log("Values submitted ::", values);
     const fullValues = { ...this.props.initialValues, ...values, ...this.state.radios };
     console.log("This is the props:", fullValues);
     this.props
       .action(fullValues)
       .catch(err => {
-        this.setState({
-          message: <StyledFailMessage>Failed</StyledFailMessage>
-        });
         alert("Failed:" + err);
       });
   };
@@ -117,7 +111,6 @@ class MainForm extends Component {
       >
         <StyledForm>
           {this.renderFields()}
-          <StyledMessage>{this.state.message}</StyledMessage>
           <Button value={this.props.operationName} />
         </StyledForm>
       </Formik>
