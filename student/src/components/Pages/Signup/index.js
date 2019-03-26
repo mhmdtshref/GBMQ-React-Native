@@ -42,9 +42,9 @@ class Signup extends Component {
         return (
           <React.Fragment >
           <StyledPage>
-          <StyledBk src={bg}/>
-          <StyledTitle> Enter your information </StyledTitle>
-          <Form fields = {fields} action={this.onSubmitAction} operationName="Signup" initialValues = {initialValues}/>
+            <StyledBk src={bg}/>
+              <StyledTitle> Enter your information </StyledTitle>
+              <Form fields = {fields} action={this.onSubmitAction} operationName="Signup" initialValues = {initialValues}/>
           </StyledPage>
           </React.Fragment>
         )

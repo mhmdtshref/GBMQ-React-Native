@@ -18,7 +18,7 @@ export const StyledForm = styled(Form)`
 export const StyledLabel = styled.label`
   width: 100%;
   margin-bottom: 15px;
-  font-size: 14px;
+  font-size: 4vw;
   font-family: 'Roboto', sans-serif;
 `;
 
