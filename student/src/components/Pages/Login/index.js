@@ -25,7 +25,7 @@ class Login extends Component {
         placeholder: "Name"
       },
       {
-        type: "text",
+        type: "password",
         name: "password",
         placeholder: "Password"
       }
