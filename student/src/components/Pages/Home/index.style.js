@@ -86,4 +86,8 @@ export const StyledSecondQuizBtn = styled.button`
   font-weight: bold;
   position: relative;
   z-index: 15;
+  .StyledSecondQuizBtn.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
 `;
