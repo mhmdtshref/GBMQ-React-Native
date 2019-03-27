@@ -6,16 +6,17 @@ import {
   StyledForm,
   StyledField,
   StyledLabel,
-  StyledMessage,
-  StyledSuccessMessage,
-  StyledFailMessage
+  StyledRadioLabel,
+  StyledRadioInput,
+  StyledRadioChoice,
+  StyledTitle
 } from "./index.style";
 
 class MainForm extends Component {
   constructor() {
     super();
     this.state = {
-      message: ""
+      radios: {},
     };
   }
 
@@ -24,13 +25,19 @@ class MainForm extends Component {
       return <option value={o.value}> {o.label}</option>;
     });
   }
-  generateRadioOptions(options) {
+
+  onRadioClick = (name, value) => {
+    this.setState((prevState) => {
+      return { radios: { ...prevState.radios, [name]: value} };
+    });
+  };
+  generateRadioOptions(options, name) {
     return options.map(o => {
       return (
-        <React.Fragment>
-          {" "}
-          <input type="radio" value={o.value} /> {o.lable}
-        </React.Fragment>
+          <StyledRadioChoice onClick={() => { this.onRadioClick(name, o.value); }}>
+              <StyledRadioInput type="radio" value={o.value} name={name} />
+              <StyledRadioLabel>{o.label}</StyledRadioLabel>
+          </StyledRadioChoice>
       );
     });
   }
@@ -48,6 +55,16 @@ class MainForm extends Component {
               />
             </StyledLabel>
           );
+        case "password":
+          return (
+              <StyledLabel>
+                  <StyledField
+                      type={f.type}
+                      name={f.name}
+                      placeholder={f.placeholder}
+                  />
+              </StyledLabel>
+          );
         case "select":
           return (
             <StyledLabel>
@@ -59,29 +76,21 @@ class MainForm extends Component {
         case "radio":
           return (
             <StyledLabel>
-              {f.label} <br />
-              {this.generateRadioOptions(f.options)}
+                <StyledTitle>{f.text}</StyledTitle>
+              {this.generateRadioOptions(f.options, f.name)}
             </StyledLabel>
           );
       }
     });
     return renderedFields;
   };
-  onFormSubmit = (values, { resetForm }) => {
-    //console.log("Values submitted ::", values);
-    const fullValues = { ...this.props.initialValues, ...values };
+
+
+  onFormSubmit = (values) => {
+    const fullValues = { ...this.props.initialValues, ...values, ...this.state.radios };
     this.props
       .action(fullValues)
-      .then(successMessage => {
-        resetForm(this.props.initialValues);
-        this.setState({
-          message: <StyledSuccessMessage>{successMessage}</StyledSuccessMessage>
-        });
-      })
       .catch(err => {
-        this.setState({
-          message: <StyledFailMessage>Failed</StyledFailMessage>
-        });
         alert("Failed:" + err);
       });
   };
@@ -94,7 +103,6 @@ class MainForm extends Component {
       >
         <StyledForm>
           {this.renderFields()}
-          <StyledMessage>{this.state.message}</StyledMessage>
           <Button value={this.props.operationName} />
         </StyledForm>
       </Formik>

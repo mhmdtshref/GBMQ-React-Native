@@ -9,19 +9,26 @@ class Signup extends Component {
         super(props);
     }
 
-    onSubmitAction = () => {
-      return 0;
-    }
+    onSubmitAction = (values) => {
+      return new Promise((resolve, reject) => {
+          if (values){
+              resolve(values);
+          } else {
+              reject(new Error('No values found!'));
+          }
+      });
+    };
+
     render() {
 
-      const initialValues = { username: "", password: "", postalcode: ""};
+      const initialValues = { username: "", password: "", postalCode: "", gender: 1, english: 1 };
       const GenderOptions = [
-            {lable: "Male", value:"Male"},
-            {lable: "Female", value:"Female"}
+            {label: "Male", value: 1},
+            {label: "Female", value: 0}
               ];
       const EnglishOptions = [
-            {lable: "Yes", value:"Yes"},
-            {lable: "No", value:"No"}
+            {label: "Yes", value: 1},
+            {label: "No", value: 0}
               ];
       const ageOptions = [
             {label:"Choose age range", value:"Choose age range"},
@@ -34,11 +41,11 @@ class Signup extends Component {
       const fields = [
             { type: "text", name:"username", placeholder: "Enter username"},
             { type: "password", name:"password", placeholder: "Enter password"},
-            { label:"What is your gender ?", type:"radio", options: GenderOptions},
-            { label:"Is English your first language ?", type:"radio", options: EnglishOptions},
-            { type: "select", component: "select", name: "ageranges", options: ageOptions},
-            { type: "text", name:"postalcode", placeholder: "Postal Code"},
-              ]
+            { type:"radio", name: "gender", text:"What is your gender ?", options: GenderOptions},
+            { type:"radio", name: "english", text:"Is English your first language ?", options: EnglishOptions},
+            { type: "select", name: "ageRanges", component: "select", options: ageOptions},
+            { type: "text", name:"postalCode", placeholder: "Postal Code"},
+              ];
         return (
           <React.Fragment >
           <StyledPage>
