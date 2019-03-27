@@ -28,9 +28,7 @@ class MainForm extends Component {
 
   onRadioClick = (name, value) => {
     this.setState((prevState) => {
-      let newRadios = prevState.radios;
-      newRadios[name] = value;
-      return { radios: newRadios };
+      return { radios: { ...prevState.radios, [name]: value} };
     });
   };
   generateRadioOptions(options, name) {
