@@ -44,9 +44,6 @@ class MainForm extends Component {
           </StyledRadioChoice>
       );
     });
-      // <input type="radio" value={o.value} /> {o.lable}
-      // <Choice text={o.value} choiceId={o.value} name={name} onCheck={() => { console.log("Checked is: ", o.value) }} />;
-      // TODO: Create Better Choice, maybe use different component!
   }
 
   renderFields = () => {
