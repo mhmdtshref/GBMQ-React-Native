@@ -7,31 +7,31 @@ import {
   StyledBk,
   StyledDiv,
   StyledButton,
-  Styleddiv,
+  StyledDiv1
 } from "./index.style";
 import bg from "./result-bg.png";
 
 class Result extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-        score: 0,
-        percentage: 0,
-        rank: 0,
+      score: 0,
+      percentage: 0,
+      rank: 0
     };
-}
+  }
 
-getResult = () => {
-  this.setState({
-    score: 9,
-    percentage: 45,
-    rank: 56,
-  });
-};
+  getResult = () => {
+    this.setState({
+      score: 9,
+      percentage: 45,
+      rank: 56
+    });
+  };
 
-componentDidMount() {
+  componentDidMount() {
     this.getResult();
-}
+  }
 
   render() {
     return (
@@ -43,14 +43,18 @@ componentDidMount() {
             <Title1>Great British Money</Title1>
             <Title2>Quiz</Title2>
           </StyledDiv>
-          <StyledButton>
-          Home
-          </StyledButton>
-          <Styleddiv>
-          <p >Score: <span>{this.state.score}/20</span></p>
-          <p>Percentage: <span>{this.state.percentage}%</span></p>
-          <p>Rank: <span>{this.state.rank} of your age</span></p>
-          </Styleddiv>
+          <StyledButton>Home</StyledButton>
+          <StyledDiv1>
+            <p>
+              Score: <span>{this.state.score}/20</span>
+            </p>
+            <p>
+              Percentage: <span>{this.state.percentage}%</span>
+            </p>
+            <p>
+              Rank: <span>{this.state.rank} of your age</span>
+            </p>
+          </StyledDiv1>
         </StyledPage>
       </React.Fragment>
     );
