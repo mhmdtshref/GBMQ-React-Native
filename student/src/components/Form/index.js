@@ -16,7 +16,6 @@ class MainForm extends Component {
   constructor() {
     super();
     this.state = {
-      message: "",
       radios: {},
     };
   }
@@ -33,7 +32,6 @@ class MainForm extends Component {
       newRadios[name] = value;
       return { radios: newRadios };
     });
-    setTimeout(() => { console.log(this.state) }, 1000);
   };
   generateRadioOptions(options, name) {
     return options.map(o => {
@@ -92,7 +90,6 @@ class MainForm extends Component {
 
   onFormSubmit = (values) => {
     const fullValues = { ...this.props.initialValues, ...values, ...this.state.radios };
-    console.log("This is the props:", fullValues);
     this.props
       .action(fullValues)
       .catch(err => {
