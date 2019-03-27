@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyledText, StyledChoicesList, StyledQuestion, StyledSign, StyledSignImg, StyledSignText } from "./index.style";
+import { StyledText, StyledChoicesList, StyledQuestion, StyledSign, StyledSignImg, StyledSignText, StyledButton } from "./index.style";
 import Image from "../Image";
 import signImage from "./questionNoImg.png";
 
@@ -59,16 +59,16 @@ class Question extends Component {
 
 
     render() {
-        // TODO: StyledChoicesList component should get onCheck function which passed from props.
         return (
             <StyledQuestion>
                 <Image url={`/public/images/questions/${this.state.imgName}`} />
                 <StyledSign>
                     <StyledSignImg src={signImage} />
-                    <StyledSignText>{this.state.questionNumber}/20</StyledSignText>
+                    <StyledSignText>{this.props.questionNumber}/20</StyledSignText>
                 </StyledSign>
                 <StyledText>{this.state.text}</StyledText>
                 <StyledChoicesList type={true} choices={this.state.choices} onCheck={this.props.onCheck} questionId={this.props.questionId} />
+                <StyledButton onClick={this.props.onClickButton}> {this.props.buttonValue} </StyledButton>
             </StyledQuestion>
         );
     }
