@@ -11,8 +11,14 @@ import bg from "./start-bg.png";
 import startImg from "./start-img.png";
 
 class Start extends Component {
+
+   constructor(props){
+     super(props)
+   }
+
+
   onStartAction = () => {
-    return 0;
+    this.props.history.push("/quiz")
   }
   render() {
     return (
@@ -22,7 +28,7 @@ class Start extends Component {
           <Title>Great British Money</Title>
           <Title1>Quiz</Title1>
           <StyledImg src={startImg} />
-          <StyledBtn onclick = {this.onStartAction}> Start first Quiz </StyledBtn>
+          <StyledBtn onClick = {this.onStartAction}> Start first Quiz </StyledBtn>
         </StyledPage>
       </React.Fragment>
     );
