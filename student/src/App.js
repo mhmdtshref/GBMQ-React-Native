@@ -17,7 +17,7 @@ class App extends Component {
     <Route path='/Login' component={Login}/>
     <Route exact path='/signup' component = {Signup}/>
     <Route exact path='/start' component = {Start}/>
-    <Route path="/quiz/" render={(props) => <Quiz {...props} quizId={1} /> }  />
+    <Route path="/quiz/" render={(props) => <Quiz {...props} /> }  />
     </div>
     </Router>
 
