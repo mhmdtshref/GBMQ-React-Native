@@ -17,7 +17,7 @@ class Start extends Component {
    constructor(props){
      super(props)
      this.state = {
-       isEnable: false
+       Quiz2Enabled: true
    };
    }
 
@@ -38,7 +38,7 @@ class Start extends Component {
           <Description> Now, you need to view tutorials videos click on the button below </Description>
           <StyledImg src={homeImg} />
           <StyledActivityBtn onClick = {this.goActivities}> Watch Course Videos </StyledActivityBtn>
-          <StyledSecondQuizBtn onClick = {this.onSecondQuiz} disabled = {!this.state.isEnable} > Go to Second Quiz </StyledSecondQuizBtn>
+          <StyledSecondQuizBtn onClick = {this.onSecondQuiz} disabled = {!this.state.Quiz2Enabled} > Go to Second Quiz </StyledSecondQuizBtn>
         </StyledPage>
       </React.Fragment>
     );
