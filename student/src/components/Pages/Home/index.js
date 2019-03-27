@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Popup from 'reactjs-popup';
+import Activities from "../Activities";
+
 import {
   Title,
   Title1,
@@ -12,19 +15,17 @@ import {
 import bg from "./home-bg.png";
 import homeImg from "./home-img.png";
 
-class Start extends Component {
+class Home extends Component {
 
-   constructor(props){
+  constructor(props){
      super(props)
      this.state = {
-       Quiz2Enabled: true
-   };
+       Quiz2Enabled: true,
+       open: false
    }
-
-
-  goActivities = () => {
-    this.props.history.push("/activities")
-  }
+   this.openActivities = this.openActivities.bind(this)
+ }
+  openActivities (){ this.setState((prevState) => { return {open: !prevState.open} })}
   onSecondQuiz = () => {
     this.props.history.push("/quiz")
   }
@@ -37,11 +38,15 @@ class Start extends Component {
           <Title1>Quiz</Title1>
           <Description> Now, you need to view tutorials videos click on the button below </Description>
           <StyledImg src={homeImg} />
-          <StyledActivityBtn onClick = {this.goActivities}> Watch Course Videos </StyledActivityBtn>
+          <StyledActivityBtn onClick = {this.openActivities}> Watch Course Videos </StyledActivityBtn>
           <StyledSecondQuizBtn onClick = {this.onSecondQuiz} disabled = {!this.state.Quiz2Enabled} > Go to Second Quiz </StyledSecondQuizBtn>
+
+          <Popup open={this.state.open} closeOnDocumentClick>
+            <Activities />
+          </Popup>
         </StyledPage>
       </React.Fragment>
     );
   }
 }
-export default Start;
+export default Home;

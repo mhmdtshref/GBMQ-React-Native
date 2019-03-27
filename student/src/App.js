@@ -6,6 +6,7 @@ import Login from './components/Pages/Login';
 import Signup from './components/Pages/Signup';
 import Start from './components/Pages/Start';
 import Home from './components/Pages/Home';
+import Activities from './components/Pages/Activities';
 import Quiz from './components/Quiz';
 
 class App extends Component {
@@ -18,7 +19,7 @@ class App extends Component {
     <Route path='/Login' component={Login}/>
     <Route exact path='/signup' component = {Signup}/>
     <Route exact path='/start' component = {Start}/>
-    <Route exact path='/activities' component = {Start}/>
+    <Route exact path='/activities' component = {Activities}/>
     <Route path="/quiz/" render={(props) => <Quiz {...props} /> }  />
     </div>
     </Router>
