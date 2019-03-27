@@ -20,6 +20,18 @@ class MainForm extends Component {
     };
   }
 
+  componentDidMount(){
+    const newRadios = (this.props.fields)
+        .filter((f) => f.type === 'radio')
+        .reduce((acc, f) => {
+          acc[f.name] = this.props.initialValues[f.name];
+          return acc;
+          }, {});
+      this.setState({
+        radios: newRadios,
+    });
+  }
+
   getSelectOptions(options) {
     return options.map(o => {
       return <option value={o.value}> {o.label}</option>;
@@ -31,11 +43,12 @@ class MainForm extends Component {
       return { radios: { ...prevState.radios, [name]: value} };
     });
   };
+
   generateRadioOptions(options, name) {
     return options.map(o => {
       return (
           <StyledRadioChoice onClick={() => { this.onRadioClick(name, o.value); }}>
-              <StyledRadioInput type="radio" value={o.value} name={name} />
+              <StyledRadioInput type="radio" value={o.value} name={name} checked={this.state.radios[name] === o.value} />
               <StyledRadioLabel>{o.label}</StyledRadioLabel>
           </StyledRadioChoice>
       );
@@ -73,7 +86,7 @@ class MainForm extends Component {
               </StyledField>
             </StyledLabel>
           );
-        case "radio":
+          case "radio":
           return (
             <StyledLabel>
                 <StyledTitle>{f.text}</StyledTitle>
@@ -84,7 +97,6 @@ class MainForm extends Component {
     });
     return renderedFields;
   };
-
 
   onFormSubmit = (values) => {
     const fullValues = { ...this.props.initialValues, ...values, ...this.state.radios };
