@@ -1,89 +1,69 @@
 import styled from "styled-components";
 
-export const StyledDiv = styled.div`
-  text-align: center;
-  position: relative;
-  z-index: 15;
-  width: 100%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+export const BackgroundImage = styled.img`
+    width: 100%;
+    height: 100%;
 `;
 
-export const Title = styled.h1`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: normal;
-  text-align: center;
-  color: #303030;
+export const StyledContent = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
 `;
 
-export const Title1 = styled.h1`
-  font-size: 30px;
-  font-family: "Black Han Sans", sans-serif;
-  color: #2d55cf;
-  text-align: center;
-  padding-top: 10vh;
-  margin-top: -8vh;
+export const CongratsImg = styled.img`
+    width: 90vw;
+    margin: 5vh 5vw 0vh 5vw;
+`;
+export const StyledHeader = styled.div`
+    width: 100vw;
+    text-align: center;
+    margin-top: -5vh;
 `;
 
-export const Title2 = styled.h1`
-  font-size: 40px;
-  font-family: "Black Han Sans", sans-serif;
-  color: #2d55cf;
+export const MessageText = styled.p`
+    font-size: 5.5vw;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin-bottom: 2vh;
+    color: #303030;
 `;
 
-export const StyledPage = styled.div`
-  margin-right: 5%;
+export const SmallTitle = styled.p`
+    font-size: 8vw;
+    font-family: "Black Han Sans", sans-serif;
+    color: #2d55cf;
+    margin-bottom: 1vh;
 `;
 
-export const StyledBk = styled.img`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: fixed;
-  background-color: #4bc0d8;
-  height: 100vh;
-  padding: 0;
+export const BigTitle = styled.p`
+    font-size: 11vw;
+    font-family: "Black Han Sans", sans-serif;
+    color: #2d55cf;
 `;
+
+export const Results = styled.div`
+    width: 90%;
+    margin: 4vh 5vw 4vh 15vw;
+`;
+
+export const ResultLine = styled.p`
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vh;
+    margin-bottom: 1.5vh;
+    span {
+        font-weight: bold;
+    }
+`;
+
 export const StyledButton = styled.button`
-  background: #38befd;
-  border-radius: 20px;
-  width: 45vw;
-  height: 35px;
-  color: white;
-  border: none;
-  margin-top: 80vh;
-  margin-left: 27.5vw;
-  margin-right: 27.5vw;
-  position: relative;
-  z-index: 15;
-  font-weight: bold;
-  font-size: 14px;
-  text-align: center;
-`;
-
-export const StyledDiv1 = styled.div`
-  width: 60vw;
-  height: 10vh;
-  margin-left: 15vw;
-  margin-right: 35vw;
-  margin-bottom: 2vh;
-  justify-content: center;
-  position: relative;
-  z-index: 15;
-  margin-top: -20vh;
-  font-family: Roboto;
-  font-style: normal;
-  font-size: 4vw;
-  line-height: normal;
-  text-align: left;
-  color: #303030;
-
-  span {
-    font-weight: bold;
-  }
+    background: #38BEFD;
+    border-radius: 20px;
+    width: 50vw;
+    height: 5.5vh;
+    color: #FFFFFF;
+    border: none;
+    margin: 4vh 25vw 2vh 25vw;
+    font-weight: 700;
+    font-size: 90%;
 `;

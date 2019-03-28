@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import {
-  Title,
-  Title1,
-  Title2,
-  StyledPage,
-  StyledBk,
-  StyledDiv,
+  BackgroundImage,
+  StyledContent,
+  CongratsImg,
+  StyledHeader,
+  MessageText,
+  SmallTitle,
+  BigTitle,
   StyledButton,
-  StyledDiv1
+  Results,
+  ResultLine,
 } from "./index.style";
-import bg from "./result-bg.png";
+import CongratsImage from "./congratulations.png";
+import BGImage from "./bg.png";
 
 class Result extends Component {
   constructor(props) {
@@ -35,28 +38,29 @@ class Result extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <StyledPage>
-          <StyledBk src={bg} />
-          <StyledDiv>
-            <Title>You have finished the</Title>
-            <Title1>Great British Money</Title1>
-            <Title2>Quiz</Title2>
-          </StyledDiv>
-          <StyledButton>Home</StyledButton>
-          <StyledDiv1>
-            <p>
-              Score: <span>{this.state.score}/20</span>
-            </p>
-            <p>
-              Percentage: <span>{this.state.percentage}%</span>
-            </p>
-            <p>
-              Rank: <span>{this.state.rank} of your age</span>
-            </p>
-          </StyledDiv1>
-        </StyledPage>
-      </React.Fragment>
+        <React.Fragment>
+          <BackgroundImage src={BGImage} />
+          <StyledContent>
+            <CongratsImg src={CongratsImage} />
+            <StyledHeader>
+              <MessageText>You have finished the</MessageText>
+              <SmallTitle>Great British Money</SmallTitle>
+              <BigTitle>Quiz</BigTitle>
+            </StyledHeader>
+            <Results>
+              <ResultLine>
+                Score: <span>{this.state.score}/20</span>
+              </ResultLine>
+              <ResultLine>
+                Percentage: <span>{this.state.percentage}%</span>
+              </ResultLine>
+              <ResultLine>
+                Rank: <span>{this.state.rank} of your age</span>
+              </ResultLine>
+            </Results>
+              <StyledButton>Home</StyledButton>
+          </StyledContent>
+        </React.Fragment>
     );
   }
 }
