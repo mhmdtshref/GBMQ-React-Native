@@ -43,8 +43,8 @@ export const BigTitle = styled.p`
 `;
 
 export const Results = styled.div`
-    width: 90%;
-    margin: 4vh 5vw 4vh 15vw;
+    width: 85vw;
+    margin: 4vh 0vw 4vh 15vw;
 `;
 
 export const ResultLine = styled.p`
