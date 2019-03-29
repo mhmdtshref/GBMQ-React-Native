@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
-
 import Login from './components/Pages/Login';
+import Result from './components/Pages/Result';
 import Signup from './components/Pages/Signup';
 import Start from './components/Pages/Start';
 import Home from './components/Pages/Home';
@@ -19,6 +19,7 @@ class App extends Component {
     <Route exact path='/signup' component = {Signup}/>
     <Route exact path='/start' component = {Start}/>
     <Route path="/quiz/" render={(props) => <Quiz {...props} /> }  />
+    <Route path='/Result' component={Result}/>
     </div>
     </Router>
 
