@@ -12,7 +12,6 @@ import {
     SmallTitle,
     StyledHeader
 } from "./index.style";
-import bg from "./home-bg.png";
 import homeImg from "./home-img.png";
 
 class Home extends Component {
@@ -21,17 +20,20 @@ class Home extends Component {
      super(props);
      this.state = {
        Quiz2Enabled: true,
-       open: true,
+       activitiesPopup: false,
    };
-   this.openActivities = this.openActivities.bind(this)
  }
-  openActivities (){ this.setState((prevState) => { return {open: !prevState.open} })}
+  openActivities = () => {
+      this.setState({ activitiesPopup: true });
+  };
   onSecondQuiz = () => {
     this.props.history.push("/quiz")
   };
 
     pageClicked = () => {
-        this.setState({ open: false });
+        if(this.state.activitiesPopup){
+            this.setState({ activitiesPopup: false });
+        }
     };
 
   render() {
@@ -49,7 +51,7 @@ class Home extends Component {
                 <StyledActivitiesButton onClick = {this.openActivities}> Watch Course Videos </StyledActivitiesButton>
                 <StyledQuizButton onClick = {this.onSecondQuiz} disabled = {!this.state.Quiz2Enabled} > Go to Second Quiz </StyledQuizButton>
             </StyledHome>
-            { this.state.open ? <Activities/> : null}
+            { this.state.activitiesPopup ? <Activities/> : null}
         </StyledContent>
       </React.Fragment>
     );
