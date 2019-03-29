@@ -1,64 +1,62 @@
 import styled from "styled-components";
+import Popup from 'reactjs-popup';
 
-export const StyledPage = styled.body`
-  margin: 0;
-  padding: 0;
+export const StyledContent = styled.body`
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: #F2F5FA;
+    height: 100vh;
 `;
 
-export const StyledBk = styled.img`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: fixed;
-  background-color: #4bc0d8;
-  height: 100vh;
-  padding: 0;
+export const StyledHome  = styled.div`
 `;
 
-export const Title = styled.h1`
-  font-size: 8vw;
-  font-family: "Black Han Sans", sans-serif;
-  color: #2d55cf;
-  text-align: center;
-  padding-top: 10vh;
-  position: relative;
-  z-index: 15;
+
+export const StyledHeader = styled.div`
+    width: 100vw;
+    text-align: center;
+    margin-top: 5vh;
 `;
 
-export const Title1 = styled.h1`
-  font-size: 11vw;
-  font-family: "Black Han Sans", sans-serif;
-  color: #2d55cf;
-  text-align: center;
-  position: relative;
-  z-index: 15;
+export const SmallTitle = styled.p`
+    font-size: 8vw;
+    font-family: "Black Han Sans", sans-serif;
+    color: #2d55cf;
+    margin-bottom: 1vh;
 `;
 
-export const Description = styled.p`
-  font-size: 5.5vw;
-  font-weight: bold;
-  margin-top: 5vh;
-  font-family: "Roboto", sans-serif;
-  color: #303030;
-  text-align: center;
-  position: relative;
-  z-index: 15;
+export const BigTitle = styled.p`
+    font-size: 11vw;
+    font-family: "Black Han Sans", sans-serif;
+    color: #2d55cf;
 `;
+
+export const MessageText = styled.p`
+    font-size: 5.5vw;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2vh;
+    margin-top: 4vh;
+    color: #303030;
+`;
+
 export const StyledImg = styled.img`
   width: 100%;
   position: relative;
   height: 50vh;
-  z-index: 15;
 `;
 
-export const StyledActivityBtn = styled.button`
+export const StyledActivitiesButton = styled.button`
   border-radius: 20px;
   border: none;
   display: block;
-  margin-top: -3vh;
+  margin-top: 2vh;
   margin-left: auto;
   margin-right: auto;
-  background: #4DD942;
+  background: #4DD842;
   width: 45vw;
   height: 35px;
   text-align: center;
@@ -67,9 +65,9 @@ export const StyledActivityBtn = styled.button`
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   position: relative;
-  z-index: 15;
 `;
-export const StyledSecondQuizBtn = styled.button`
+
+export const StyledQuizButton = styled.button`
   border-radius: 20px;
   border: none;
   display: block;
@@ -85,10 +83,12 @@ export const StyledSecondQuizBtn = styled.button`
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   position: relative;
-  z-index: 15;
   &:disabled {
     opacity: 0.65;
     background: #6c757d;
     cursor: not-allowed;
 }
+`;
+
+export const StyledPopup = styled(Popup)`
 `;
