@@ -25,5 +25,5 @@ It's an app to test kids financial knowledgement level before give them 5-days t
 - Routing: [React Router](https://reacttraining.com/react-router/)
 
 # Database Schema
-![Uploading Database-Schema.png…]()
 
+![Database-Schema](https://user-images.githubusercontent.com/41734542/55286797-12b5e600-53a9-11e9-89a4-b29b2acb5653.png)
