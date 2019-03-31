@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Popup from 'reactjs-popup';
 
 export const StyledContent = styled.body`
     position: absolute;
@@ -88,7 +87,4 @@ export const StyledQuizButton = styled.button`
     background: #6c757d;
     cursor: not-allowed;
 }
-`;
-
-export const StyledPopup = styled(Popup)`
 `;
