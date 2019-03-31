@@ -8,9 +8,8 @@ import {
   BigTitle,
   StyledButton,
   Results,
-  Column1,
-  Column,
-  Column2,
+  FirstColumn,
+  Column
 } from "./index.style";
 import CongratsImage from "./congratulations.png";
 
@@ -83,12 +82,12 @@ class Result extends Component {
             <BigTitle>Quiz</BigTitle>
           </StyledHeader>
           <Results>
-            <Column1>
+            <FirstColumn>
               <p>In Terms Of</p>
               <p>Score</p>
               <p>Percentage</p>
               <p>Rank of age</p>
-            </Column1>
+            </FirstColumn>
             <Column>
               <p>Quiz 1</p>
               <p>{this.state.results.score}/20</p>
@@ -101,12 +100,12 @@ class Result extends Component {
               <p>{this.state.results.percentage2}%</p>
               <p>{this.state.results.rank2}</p>
             </Column>
-            <Column2>
+            <Column>
               <p>Progress</p>
               <p>{this.state.results.scoreImprovement}</p>
               <p>{this.state.results.percentageImprovement}</p>
               <p>{this.state.results.rankImprovement}</p>
-            </Column2>
+            </Column>
           </Results>
           <StyledButton>Home</StyledButton>
         </StyledContent>
