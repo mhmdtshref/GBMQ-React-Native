@@ -1,40 +1,50 @@
 const bcrypt = require('bcryptjs');
 const Student = require('../models/Student.model.js');
 
-const signup = (req, res) => {
-  const {
+
+const hashStudentPassword = student => new Promise((resolve, reject) => {
+  bcrypt.hash(student.password, 10, (hashError, hashedPassword) => {
+    if (hashError) {
+      reject(hashError);
+    } else {
+      const newStudent = student;
+      newStudent.password = hashedPassword;
+      resolve(newStudent);
+    }
+  });
+});
+
+const createStudent = ({
+  username, password, age, gender, english, postcode,
+}) => new Promise((resolve, reject) => {
+  Student.create({
     username,
     password,
     age,
     gender,
     english,
     postcode,
-  } = req.body;
+    raw: true,
+  })
+    .then(() => {
+      resolve();
+    })
+    .catch((err) => {
+      reject(err);
+    });
+});
 
-  bcrypt.hash(password, 10, (hashError, hashedPassword) => {
-    if (hashError) {
-      res.json({
-        success: false,
-        error: hashError.message,
-      });
-    } else {
-      Student.create({
-        username,
-        password: hashedPassword,
-        age,
-        gender,
-        english,
-        postcode,
-        raw: true,
-      })
-        .then(() => {
-          res.json({ success: true });
-        })
-        .catch((err) => {
-          res.json({ success: false, error: err.message });
-        });
-    }
-  });
+const signup = (req, res) => {
+  const student = req.body;
+
+  hashStudentPassword(student)
+    .then(createStudent)
+    .then(() => {
+      res.json({ success: true });
+    })
+    .catch((err) => {
+      res.json({ success: false, error: err.message });
+    });
 };
 
 module.exports = { signup };
