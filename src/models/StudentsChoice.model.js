@@ -1,9 +1,12 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./sequelize.js');
 
-const StudentsChoice = sequelize.define('studentschoices', {
-    studentId: { type: Sequelize.STRING(255), allowNull: false },
-    choiceId: { type: Sequelize.STRING(512), allowNull: false },
-});
+const Student = require('./Student.model');
+const Choice = require('./Choice.model');
+
+const StudentsChoice = sequelize.define('studentsChoices', {});
+
+StudentsChoice.belongsTo(Student);
+StudentsChoice.belongsTo(Choice);
 
 module.exports = StudentsChoice;
