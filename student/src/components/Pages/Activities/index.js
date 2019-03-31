@@ -81,7 +81,7 @@ class Activities extends Component {
 
     renderDaysComponents = (days, originalDaysNumber) => {
         return new Promise((resolve, reject) => {
-            const renderedDays = this.state.days.sort((dayA, dayB) => dayA.order < dayB.order).map((day) => {
+            const renderedDays = this.state.days.sort((dayA, dayB) => dayA.order > dayB.order).map((day) => {
                 return <ActivityButton onClick={() => { window.location = day.link }}>{ day.key }</ActivityButton>
             });
             if(renderedDays){
