@@ -34,13 +34,10 @@ class Result extends Component {
     return new Promise((resolve, reject) => {
       const results = {
         score: 0,
-        percentage: 0,
         rank: 0,
         score2: 0,
-        percentage2: 0,
         rank2: 0,
         scoreImprovement: 0,
-        percentageImprovement: 0,
         rankImprovement: 0
       };
       if (results) {
@@ -83,27 +80,22 @@ class Result extends Component {
           </StyledHeader>
           <Results>
             <FirstColumn>
-              <p>In Terms Of</p>
               <p>Score</p>
-              <p>Percentage</p>
               <p>Rank of age</p>
             </FirstColumn>
             <Column>
               <p>Quiz 1</p>
-              <p>{this.state.results.score}/20</p>
-              <p>{this.state.results.percentage}%</p>
+              <p>{this.state.results.score}%</p>
               <p>{this.state.results.rank}</p>
             </Column>
             <Column>
               <p>Quiz 2</p>
-              <p>{this.state.results.score2}/20</p>
-              <p>{this.state.results.percentage2}%</p>
+              <p>{this.state.results.score2}%</p>
               <p>{this.state.results.rank2}</p>
             </Column>
             <Column>
               <p>Progress</p>
-              <p>{this.state.results.scoreImprovement}</p>
-              <p>{this.state.results.percentageImprovement}</p>
+              <p>{this.state.results.scoreImprovement}%</p>
               <p>{this.state.results.rankImprovement}</p>
             </Column>
           </Results>

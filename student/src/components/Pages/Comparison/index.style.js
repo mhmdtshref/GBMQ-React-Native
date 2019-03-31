@@ -51,6 +51,7 @@ export const Results = styled.div`
 export const FirstColumn = styled.div`
   float: left;
   width: 30%;
+  margin-top: 4vh;
   p {
     margin-bottom: 2vh;
     text-align: left;
