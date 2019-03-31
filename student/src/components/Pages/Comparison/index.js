@@ -19,10 +19,8 @@ class Result extends Component {
     this.state = {
       results: {
         score: 0,
-        percentage: 0,
         rank: 0,
         score2: 0,
-        percentage2: 0,
         rank2: 0,
         scoreImprovement: 0,
         percentageImprovement: 0,
@@ -33,12 +31,12 @@ class Result extends Component {
   getComparisonResult = () => {
     return new Promise((resolve, reject) => {
       const results = {
-        score: 0,
-        rank: 0,
-        score2: 0,
-        rank2: 0,
-        scoreImprovement: 0,
-        rankImprovement: 0
+        score: 75,
+        rank: 22,
+        score2: 80,
+        rank2: 13,
+        scoreImprovement: 5,
+        rankImprovement: 9,
       };
       if (results) {
         resolve(results);
