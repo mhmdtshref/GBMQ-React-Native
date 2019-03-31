@@ -23,3 +23,7 @@ It's an app to test kids financial knowledgement level before give them 5-days t
 - Framework: [React.js](https://reactjs.org/docs/getting-started.html)
 - Statistcs: [CanvasJS](https://canvasjs.com/react-charts/pie-chart/)
 - Routing: [React Router](https://reacttraining.com/react-router/)
+
+# Database Schema
+![Uploading Database-Schema.png…]()
+
