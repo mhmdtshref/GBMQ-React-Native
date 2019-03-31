@@ -11,9 +11,13 @@ const signup = (req, res) => {
     postcode,
   } = req.body;
 
-  bcrypt.hash(password, 10, (hashErr, hashedPassword) => {
-    if (hashErr) res.send(hashErr.message);
-    else {
+  bcrypt.hash(password, 10, (hashError, hashedPassword) => {
+    if (hashError) {
+      res.json({
+        success: false,
+        error: hashError.message,
+      });
+    } else {
       Student.create({
         username,
         password: hashedPassword,
@@ -24,9 +28,11 @@ const signup = (req, res) => {
         raw: true,
       })
         .then(() => {
-          res.json({ success: 'Student has been added' });
+          res.json({ success: true });
         })
-        .catch(() => res.status(500).json({ error: 'Something wrong in addition query' }));
+        .catch((err) => {
+          res.json({ success: false, error: err.message });
+        });
     }
   });
 };
