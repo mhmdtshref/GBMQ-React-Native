@@ -1,47 +1,61 @@
 import React, { Component } from "react";
+import Activities from "../Activities";
+
 import {
-  Title,
-  Title1,
-  Description,
-  StyledActivityBtn,
-  StyledSecondQuizBtn,
-  StyledPage,
-  StyledBk,
-  StyledImg,
+    StyledContent,
+    StyledHome,
+    StyledActivitiesButton,
+    StyledQuizButton,
+    StyledImg,
+    BigTitle,
+    MessageText,
+    SmallTitle,
+    StyledHeader
 } from "./index.style";
-import bg from "./home-bg.png";
 import homeImg from "./home-img.png";
 
-class Start extends Component {
+class Home extends Component {
 
-   constructor(props){
-     super(props)
+  constructor(props){
+     super(props);
      this.state = {
-       Quiz2Enabled: true
+       Quiz2Enabled: true,
+       activitiesPopup: false,
    };
-   }
-
-
-  goActivities = () => {
-    this.props.history.push("/activities")
-  }
+ }
+  openActivities = () => {
+      this.setState({ activitiesPopup: true });
+  };
   onSecondQuiz = () => {
     this.props.history.push("/quiz")
-  }
+  };
+
+    pageClicked = () => {
+        if(this.state.activitiesPopup){
+            this.setState({ activitiesPopup: false });
+        }
+    };
+
   render() {
+      console.log("State open:", this.state.open);
     return (
       <React.Fragment>
-        <StyledPage>
-          <StyledBk src={bg} />
-          <Title>Great British Money</Title>
-          <Title1>Quiz</Title1>
-          <Description> Now, you need to view tutorials videos click on the button below </Description>
-          <StyledImg src={homeImg} />
-          <StyledActivityBtn onClick = {this.goActivities}> Watch Course Videos </StyledActivityBtn>
-          <StyledSecondQuizBtn onClick = {this.onSecondQuiz} disabled = {!this.state.Quiz2Enabled} > Go to Second Quiz </StyledSecondQuizBtn>
-        </StyledPage>
+        <StyledContent>
+            <StyledHome onClick={this.pageClicked}>
+                <StyledHeader>
+                    <SmallTitle>Great British Money</SmallTitle>
+                    <BigTitle>Quiz</BigTitle>
+                </StyledHeader>
+                <MessageText> Now, you need to view tutorials videos click on the button below </MessageText>
+                <StyledImg src={homeImg} />
+                <StyledActivitiesButton onClick = {this.openActivities}> Watch Course Videos </StyledActivitiesButton>
+                <StyledQuizButton onClick = {this.onSecondQuiz} disabled = {!this.state.Quiz2Enabled} > Go to Second Quiz </StyledQuizButton>
+            </StyledHome>
+            { this.state.activitiesPopup ? <Activities/> : null}
+        </StyledContent>
       </React.Fragment>
     );
   }
+
 }
-export default Start;
+export default Home;
