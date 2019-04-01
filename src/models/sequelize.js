@@ -1,5 +1,4 @@
-const Sequelize = require('sequelize');
-
+const Sequelize = require('sequelize-views-support');
 require('env2')('config.env');
 
 // init sequelize
