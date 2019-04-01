@@ -6,6 +6,7 @@ const studentController = require('./controllers/Student.controller.js');
 const router = express.Router();
 
 router.post('/signup', studentController.signup);
+router.post('/login', studentController.login);
 
 
 router.get('*', (req, res) => {
