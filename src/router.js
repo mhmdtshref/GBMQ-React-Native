@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
-// const controllers = require('./controllers');
+const studentController = require('./controllers/Student.controller.js');
 // const validations = require('./validations');
 
 const router = express.Router();
+
+router.post('/signup', studentController.signup);
 
 
 router.get('*', (req, res) => {
