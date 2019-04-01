@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize-views-support');
 const sequelize = require('./sequelize.js');
 
 const Question = sequelize.define('questions', {
