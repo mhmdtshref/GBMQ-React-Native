@@ -10,7 +10,7 @@ const Quiz2Mark = sequelize.define('quiz2marks', {
   treatAsView: false,
   viewDefinition: `
             CREATE VIEW "quiz2marks" AS (
-            SELECT students.id as stdId, students.username, COUNT(questions.id)
+            SELECT students.id as stdId, students.username, COUNT(questions.id) as mark
             FROM students
             INNER JOIN "studentsChoices" on students.id = "studentsChoices"."studentId"
             INNER JOIN choices on choices.id = "studentsChoices"."choiceId"
