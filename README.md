@@ -35,7 +35,7 @@ It's an app to test kids financial knowledgement level before give them 5-days t
   - [PostgreSQL Database](https://www.postgresql.org)
  
 #### Then, go on with these steps to run the app:
-1. clone this app by: `git clone `https://github.com/FACK1/GBMQ.git`, or using SSH: `git clone git@github.com:FACK1/GBMQ.git`.
+1. clone this app by: `git clone https://github.com/FACK1/GBMQ.git`, or using SSH: `git clone git@github.com:FACK1/GBMQ.git`.
 2. Enter the cloned app folder `cd GBMQ/`.
 3. Run the command `npm install`.
 4. Enter the student folder using `cd students/`.
