@@ -7,4 +7,6 @@ const Quiz1Mark = require('./Quiz1Mark.model');
 const Choice = require('./Choice.model');
 const Quiz2Mark = require('./Quiz2Mark.model');
 
-module.exports = { Question, Student, Choice, StudentsChoice, Admin, Quiz1Mark, Quiz2Mark, sequelize };
+module.exports = {
+  Question, Student, Choice, StudentsChoice, Admin, Quiz1Mark, Quiz2Mark, sequelize,
+};

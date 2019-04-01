@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize-views-support');
 const sequelize = require('./sequelize.js');
 
 const Student = require('./Student.model');
