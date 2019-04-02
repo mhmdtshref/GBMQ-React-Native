@@ -11,18 +11,18 @@ const create = (student) => {
 
 
 const findStudentByUsername = username => new Promise((resolve, reject) => {
-    Student.findOne({
-        where: { username },
-        raw: true,
-    }).then((student) => {
-        if(!student){
-          reject(new Error('Student Not Found!'));
-        } else {
-          resolve(student);
-        }
-    }).catch((err) => {
-      reject(err);
-    });
+  Student.findOne({
+    where: { username },
+    raw: true,
+  }).then((student) => {
+    if (!student) {
+      reject(new Error('Student Not Found!'));
+    } else {
+      resolve(student);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
 });
 
 
