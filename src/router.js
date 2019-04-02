@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const AuthController = require('./controllers/Auth.controller');
+const studentMiddleware = require('./middlewares/checkStudentAuth.middleware');
 
 // const validations = require('./validations');
 
@@ -9,6 +10,11 @@ const router = express.Router();
 router.post('/signup', AuthController.signup);
 router.post('/login', AuthController.login);
 
+router.get('/checkAuth',[studentMiddleware.checkStudentAuth,], (req, res) => {
+  res.json({
+      success: true,
+  });
+});
 
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
