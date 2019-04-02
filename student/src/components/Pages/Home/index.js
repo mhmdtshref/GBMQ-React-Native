@@ -22,13 +22,14 @@ class Home extends Component {
      this.state = {
        Quiz2Enabled: true,
        activitiesPopup: false,
+       studentState: 3,
    };
  }
 
  checkStudentState = () => new Promise ((resolve, reject) => {
-   const studentState = 2;
-   if (studentState === 0 || studentState > 0) {
-     resolve(studentState);
+
+   if (this.state.studentState === 0 || this.state.studentState > 0) {
+     resolve(this.state.studentState);
    } else {
      reject(new Error('Response Error'));
    }
@@ -68,7 +69,10 @@ class Home extends Component {
     };
 
   render() {
-    return (
+    if (this.studentState != 2) {
+        return <h1> Loading... </h1>
+        }
+        return (
       <React.Fragment>
         <StyledContent>
             <StyledHome onClick={this.pageClicked}>
@@ -85,7 +89,6 @@ class Home extends Component {
         </StyledContent>
       </React.Fragment>
     );
-  }
-
+    }
 }
 export default Home;
