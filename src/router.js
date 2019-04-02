@@ -1,14 +1,13 @@
 const express = require('express');
 const path = require('path');
-const signupstudentController = require('./controllers/Auth.Student.controller/signup.controller.js');
-const loginstudentController = require('./controllers/Auth.Student.controller/login.controller.js');
+const AuthController = require('./controllers/Auth.controller');
 
 // const validations = require('./validations');
 
 const router = express.Router();
 
-router.post('/signup', signupstudentController);
-router.post('/login', loginstudentController);
+router.post('/signup', AuthController.signup);
+router.post('/login', AuthController.login);
 
 
 router.get('*', (req, res) => {
