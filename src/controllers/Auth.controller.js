@@ -43,20 +43,16 @@ const matchPasswords = (student, password) => new Promise((resolve, reject) => {
 
 const signup = (req, res) => {
   const student = req.body;
-  if (!student) {
-    res.json({ success: false, err: 'No student data found!' });
-  } else {
-    hashStudentPassword(student)
-      .then(StudentController.create)
-      .then(generateIdCookie)
-      .then((token) => {
-        res.cookie('id', token, { maxAge: 360000000 });
-        res.json({ success: true });
-      })
-      .catch((err) => {
-        res.json({ success: false, error: err.message });
-      });
-  }
+  hashStudentPassword(student)
+    .then(StudentController.create)
+    .then(generateIdCookie)
+    .then((token) => {
+      res.cookie('id', token, { maxAge: 360000000 });
+      res.json({ success: true });
+    })
+    .catch((err) => {
+      res.json({ success: false, error: err.message });
+    });
 };
 
 const login = (req, res) => {
