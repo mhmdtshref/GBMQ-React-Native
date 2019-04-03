@@ -7,7 +7,7 @@
     "install:student": "cd student && npm install",
     "dev:student": "cd student && npm start",
     "build:student": "cd student && npm run build",
-    "start:server":"node ./src/server.js",
+    "start:server": "node ./src/server.js",
     "dev:server": "node ./src/server.js",
     "start": "npm run install:student && npm run build:student && npm run start:server",
     "eslint": "eslint ./src/",
@@ -29,7 +29,8 @@
   "devDependencies": {
     "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint-plugin-import": "^2.16.0",
+    "nodemon": "^1.18.10"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
