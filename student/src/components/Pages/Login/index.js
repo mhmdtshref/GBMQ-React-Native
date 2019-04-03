@@ -21,26 +21,12 @@ class Login extends Component {
       password: '',
     };
   }
-
-//   componentDidMount() {
-//     const { history } = this.props;
-//     axios.post("/login").then(({ data }) => {
-//       if (data.success) {
-//         if (data.success) {
-//           history.push("/home");
-//         } else {
-//           this.setState({ error: data.error });
-//         }
-//     }
-//   });
-// }
     onSubmitAction = (values) => new Promise ((resolve, reject) => {
       const { username, password } = values;
       const { history } = this.props;
       axios
         .post("/login", { username, password })
         .then(({ data }) => {
-          console.log(data);
           if (data.success) {
             history.push("/");
             resolve();
@@ -61,7 +47,7 @@ class Login extends Component {
     const fields = [
       {
         type: "text",
-        name: "name",
+        name: "username",
         placeholder: "Name"
       },
       {
