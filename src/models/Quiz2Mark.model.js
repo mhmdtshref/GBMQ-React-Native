@@ -7,7 +7,7 @@ const Quiz2Mark = sequelize.define('quiz2marks', {
   mark: Sequelize.INTEGER,
 },
 {
-  treatAsView: false,
+  treatAsView: true,
   viewDefinition: `
             CREATE VIEW "quiz2marks" AS (
             SELECT students.id as stdId, students.username, COUNT(questions.id) as mark
