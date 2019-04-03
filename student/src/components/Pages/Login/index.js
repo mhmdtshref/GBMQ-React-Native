@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import MainForm from "../../Form";
 import {
   Title,
@@ -12,15 +13,48 @@ import {
 import bg from "./login-bg.png";
 
 class Login extends Component {
-  onSubmitAction = (values) => {
-    return new Promise((resolve, reject) => {
-      if(values){
-        resolve(values);
-      } else {
-        reject(new Error('No values found!'));
-      }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
+
+//   componentDidMount() {
+//     const { history } = this.props;
+//     axios.post("/login").then(({ data }) => {
+//       if (data.success) {
+//         if (data.success) {
+//           history.push("/home");
+//         } else {
+//           this.setState({ error: data.error });
+//         }
+//     }
+//   });
+// }
+    onSubmitAction = (values) => new Promise ((resolve, reject) => {
+      const { username, password } = values;
+      const { history } = this.props;
+      axios
+        .post("/login", { username, password })
+        .then(({ data }) => {
+          console.log(data);
+          if (data.success) {
+            history.push("/");
+            resolve();
+          } else {
+            reject(new Error('Username and password is not matched'));
+          }
+        })
+        .catch(error => {
+          this.setState({ error: error.message });
+          reject();
+        });
     });
-  };
+
+
 
   render() {
     const initialValues = { name: "", password: "" };
