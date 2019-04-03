@@ -109,7 +109,7 @@ const checkState = (req, res) => {
     .then(checkQuiz2)
     .then(checkQuiz1)
     .then(() => new Promise((resolve, reject) => {
-      reject(new Error(1));
+      reject(new Error('1'));
     }))
     .catch((err) => {
       switch (err.message) {
@@ -128,6 +128,9 @@ const checkState = (req, res) => {
               res.json({ success: false, error: getQuizErr.message });
             });
           break;
+          case '3':
+            res.json({ success: true, data: { studentState: 3 } });
+            break;
         default:
           res.json({ success: false, error: err.message });
       }
