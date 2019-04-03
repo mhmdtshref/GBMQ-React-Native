@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const AuthController = require('./controllers/Auth.controller');
 const StudentController = require('./controllers/Student.controller');
-c//onst studentMiddleware = require('./middlewares/checkStudentAuth.middleware');
+// const studentMiddleware = require('./middlewares/checkStudentAuth.middleware');
 
 // const validations = require('./validations');
 
