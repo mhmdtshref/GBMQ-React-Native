@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const AuthController = require('./controllers/Auth.controller');
 const AdminController = require('./controllers/Admin.controller.js');
+const StudentController = require('./controllers/Student.controller');
+
 
 // const validations = require('./validations');
 
@@ -11,6 +13,7 @@ router.post('/signup', AuthController.signup);
 router.post('/login', AuthController.login);
 router.post('/postQuestion', AdminController.postQuestion);
 
+router.get('/checkState', StudentController.checkState);
 
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
