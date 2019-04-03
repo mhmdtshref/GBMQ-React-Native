@@ -16,13 +16,13 @@ class App extends Component {
     <div className="App">
 
     <Route exact path='/' component={Home}/>
-    <Route path='/Login' component={Login}/>
+    <Route path='/login' component={Login}/>
     <Route exact path='/signup' component = {Signup}/>
     <Route exact path='/start' component = {Start}/>
     <Route path="/quiz/" render={(props) => <Quiz {...props} /> }  />
-    <Route path='/Result' component={Result}/>
+    <Route path='/result' component={Result}/>
     <Route exact path='/activities' component = {Start}/>
-    <Route exact path='/Comparison' component = {Comparison}/>
+    <Route exact path='/comparison' component = {Comparison}/>
     </div>
     </Router>
 
