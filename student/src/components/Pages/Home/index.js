@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import Activities from "../Activities";
 
 import {
@@ -21,8 +22,39 @@ class Home extends Component {
      this.state = {
        Quiz2Enabled: true,
        activitiesPopup: false,
+       studentState: 3,
    };
  }
+
+ checkStudentState = () => new Promise ((resolve, reject) => {
+
+   if (this.state.studentState === 0 || this.state.studentState > 0) {
+     resolve(this.state.studentState);
+   } else {
+     reject(new Error('Response Error'));
+   }
+ });
+
+ componentDidMount() {
+   this.checkStudentState()
+   .then((studentState) => {
+     const {history} = this.props;
+      switch (studentState) {
+        case 0:
+        history.push('/login');
+          break;
+        case 1:
+        history.push('/start');
+          break;
+        case 2:
+          break;
+        case 3:
+        history.push('/Comparison');
+          break;
+      }
+   })
+ }
+
   openActivities = () => {
       this.setState({ activitiesPopup: true });
   };
@@ -37,8 +69,10 @@ class Home extends Component {
     };
 
   render() {
-      console.log("State open:", this.state.open);
-    return (
+    if (this.studentState != 2) {
+        return <h1> Loading... </h1>
+        }
+        return (
       <React.Fragment>
         <StyledContent>
             <StyledHome onClick={this.pageClicked}>
@@ -55,7 +89,6 @@ class Home extends Component {
         </StyledContent>
       </React.Fragment>
     );
-  }
-
+    }
 }
 export default Home;
