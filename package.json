@@ -9,7 +9,7 @@
     "build:student": "cd student && npm run build",
     "start:server": "node ./src/server.js",
     "dev:server": "nodemon ./src/server.js",
-    "start": "npm run install:student && npm run build:student && npm run start:server",
+    "start": "node ./src/server.js",
     "eslint": "eslint ./src/",
     "eslint:fix": "eslint --fix ./src/",
     "heroku-postbuild": "cd student && npm install && npm run build"
