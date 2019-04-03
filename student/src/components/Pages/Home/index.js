@@ -22,18 +22,34 @@ class Home extends Component {
      this.state = {
        Quiz2Enabled: true,
        activitiesPopup: false,
-       studentState: 3,
    };
  }
 
- checkStudentState = () => new Promise ((resolve, reject) => {
 
-   if (this.state.studentState === 0 || this.state.studentState > 0) {
-     resolve(this.state.studentState);
-   } else {
-     reject(new Error('Response Error'));
+ checkStudentState = () => {
+   return axios
+   .get('/checkState')
+   .then(({data})=>{
+      if (data.success) {
+          if (data.data.studentState) {
+              this.setState({studentState: data.data.studentState});
+            }
+            else {
+              throw new Error(data.error)
+            }
+          } else {
+            throw new Error(data.error)
+          }
+   })
+   .then(() => {
+     if (this.state.studentState === 0 || this.state.studentState > 0) {
+        return this.state.studentState;
    }
- });
+ })
+   .catch(() => {
+      return new Error('Response Error')
+   })
+ };
 
  componentDidMount() {
    this.checkStudentState()
@@ -62,7 +78,7 @@ class Home extends Component {
     this.props.history.push("/quiz")
   };
 
-    pageClicked = () => {
+  pageClicked = () => {
         if(this.state.activitiesPopup){
             this.setState({ activitiesPopup: false });
         }

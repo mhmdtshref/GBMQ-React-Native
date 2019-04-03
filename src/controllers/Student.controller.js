@@ -128,9 +128,9 @@ const checkState = (req, res) => {
               res.json({ success: false, error: getQuizErr.message });
             });
           break;
-          case '3':
-            res.json({ success: true, data: { studentState: 3 } });
-            break;
+        case '3':
+          res.json({ success: true, data: { studentState: 3 } });
+          break;
         default:
           res.json({ success: false, error: err.message });
       }
