@@ -8,7 +8,7 @@
     "dev:student": "cd student && npm start",
     "build:student": "cd student && npm run build",
     "start:server": "node ./src/server.js",
-    "dev:server": "node ./src/server.js",
+    "dev:server": "nodemon ./src/server.js",
     "start": "npm run install:student && npm run build:student && npm run start:server",
     "eslint": "eslint ./src/",
     "eslint:fix": "eslint --fix ./src/"
