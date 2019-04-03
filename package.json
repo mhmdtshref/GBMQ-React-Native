@@ -12,7 +12,6 @@
     "start": "npm run install:student && npm run build:student && npm run start:server",
     "eslint": "eslint ./src/",
     "eslint:fix": "eslint --fix ./src/",
-    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
