@@ -9,4 +9,6 @@ const createChoice = (choice) => {
     questionId, text, isRight, raw: true,
   });
 };
-module.exports = { createChoice };
+
+
+module.exports = { createChoice, };
