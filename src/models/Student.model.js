@@ -9,7 +9,7 @@ const Student = sequelize.define('students', {
     allowNull: false,
   },
   password: {
-    type: Sequelize.STRING(20),
+    type: Sequelize.STRING,
     allowNull: false,
   },
   age: {
@@ -25,7 +25,7 @@ const Student = sequelize.define('students', {
     allowNull: false,
   },
   postcode: {
-    type: Sequelize.STRING(50),
+    type: Sequelize.STRING,
     allowNull: false,
   },
 }, { freezeTableName: true });

@@ -1,6 +1,7 @@
 const {
-  Question,
+  Question, Choice
 } = require('../models');
+
 
 const createQuestion = (question) => {
   const {
@@ -11,6 +12,20 @@ const createQuestion = (question) => {
   });
 };
 
+
+const getQuestionById = (req, res) => {
+    const {questionId} = req.params;
+
+    Question.findOne({where: { id: questionId }, include: [{ model: Choice,attributes:['id', 'text'] }], attributes: [ 'id', 'text', 'imageUrl', 'type', 'quizNo' ] })
+        .then((question) => {
+            res.json({ success: true, data: { question }});
+        })
+        .catch((err) => {
+            res.json({ success: false, error: err.message });
+        })
+};
+
+
 module.exports = {
-  createQuestion,
+  createQuestion, getQuestionById
 };
