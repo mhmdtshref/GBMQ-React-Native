@@ -31,9 +31,10 @@ class Home extends Component {
      axios
          .get('/checkState')
          .then(({data})=>{
-             if (data.success && data.data.studentState) {
-                     this.setState({studentState: data.data.studentState});
-                     resolve(data.data.studentState);
+             if (data.success && data.data.studentState >= 0) {
+                     this.setState({ studentState: data.data.studentState }, () => {
+                         resolve(data.data.studentState);
+                     });
              } else {
                  reject(data.error)
              }
@@ -44,23 +45,23 @@ class Home extends Component {
  });
 
  componentDidMount() {
-   this.checkStudentState()
-   .then((studentState) => {
-     const {history} = this.props;
-      switch (studentState) {
-        case 0:
-        history.push('/login');
-          break;
-        case 1:
-        history.push('/start');
-          break;
-        case 2:
-          break;
-        case 3:
-        history.push('/Comparison');
-          break;
-      }
-   })
+     if(this.state.studentState !== 2){
+         this.checkStudentState()
+             .then((studentState) => {
+                 const {history} = this.props;
+                 switch (studentState) {
+                     case 0:
+                         history.push('/login');
+                         break;
+                     case 1:
+                         history.push('/start');
+                         break;
+                     case 3:
+                         history.push('/Comparison');
+                         break;
+                 }
+             })
+     }
  }
 
   openActivities = () => {
@@ -77,7 +78,7 @@ class Home extends Component {
     };
 
   render() {
-    if (this.studentState != 2) {
+    if (this.state.studentState !== 2) {
         return <StyledLoading> Loading... </StyledLoading>
         }
         return (
