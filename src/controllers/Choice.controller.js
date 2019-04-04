@@ -11,7 +11,7 @@ const createChoice = (choice) => {
 };
 
 const getChoiceByQuestionId = (id) => new Promise((resolve, reject) => {
-    Choice.findAll({ where: { questionId: id } })
+    Choice.findAll({ where: { questionId: id }, attributes: [ 'id', 'questionId', 'text' ] })
         .then((choices) => {
             resolve(choices);
         })
