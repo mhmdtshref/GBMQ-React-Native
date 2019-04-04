@@ -1,7 +1,8 @@
 const {
   Question, Choice
 } = require('../models');
-const ChoiceController = require('./Choice.controller');
+
+
 const createQuestion = (question) => {
   const {
     text, imageUrl, type, quizNo,
