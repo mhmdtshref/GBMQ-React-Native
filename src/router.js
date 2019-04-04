@@ -4,6 +4,7 @@ const AuthController = require('./controllers/Auth.controller');
 const AdminController = require('./controllers/Admin.controller.js');
 const StudentController = require('./controllers/Student.controller');
 const QuestionController = require('./controllers/Question.controller');
+const QuizController = require('./controllers/Quiz.controller');
 
 // const validations = require('./validations');
 
@@ -15,6 +16,8 @@ router.post('/postQuestion', AdminController.postQuestion);
 
 router.get('/checkState', StudentController.checkState);
 router.get('/getQuestion/:questionId', QuestionController.getQuestionById);
+
+router.get('/quizQuestionsIds', QuizController.getQuizQuestionsIds);
 
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
