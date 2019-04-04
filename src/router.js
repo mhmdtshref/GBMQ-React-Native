@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
 const AuthController = require('./controllers/Auth.controller');
+const AdminController = require('./controllers/Admin.controller.js');
 const StudentController = require('./controllers/Student.controller');
-// const studentMiddleware = require('./middlewares/checkStudentAuth.middleware');
+
 
 // const validations = require('./validations');
 
@@ -10,6 +11,7 @@ const router = express.Router();
 
 router.post('/signup', AuthController.signup);
 router.post('/login', AuthController.login);
+router.post('/postQuestion', AdminController.postQuestion);
 
 router.get('/checkState', StudentController.checkState);
 
