@@ -11,21 +11,6 @@ const createQuestion = (question) => {
   });
 };
 
-const addQuestionChoices = (question) => new Promise((resolve, reject) => {
-    if(question){
-        ChoiceController.getChoiceByQuestionId(question.id)
-            .then((choices) => {
-                resolve({ question, choices });
-            })
-            .catch((err) => {
-                reject(err);
-            })
-    } else {
-        reject(new Error('No question found'));
-    }
-
-});
-
 
 const getQuestionById = (req, res) => {
     const {questionId} = req.params;

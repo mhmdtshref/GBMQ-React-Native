@@ -10,14 +10,5 @@ const createChoice = (choice) => {
   });
 };
 
-const getChoiceByQuestionId = (id) => new Promise((resolve, reject) => {
-    Choice.findAll({ where: { questionId: id }, attributes: [ 'id', 'questionId', 'text' ] })
-        .then((choices) => {
-            resolve(choices);
-        })
-        .catch((err) => {
-            reject(new Error('Find choices error'));
-        });
-});
 
-module.exports = { createChoice, getChoiceByQuestionId };
+module.exports = { createChoice, };
