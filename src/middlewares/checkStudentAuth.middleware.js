@@ -23,7 +23,7 @@ const checkStudentAuth = (req, res, next) => {
           },
         });
       } else {
-        req.userId = decoded;
+        req.studentId = decoded.id;
         next();
       }
     });
