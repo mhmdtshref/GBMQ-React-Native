@@ -3,6 +3,7 @@ const path = require('path');
 const AuthController = require('./controllers/Auth.controller');
 const AdminController = require('./controllers/Admin.controller.js');
 const StudentController = require('./controllers/Student.controller');
+const QuestionController = require('./controllers/Question.controller');
 const QuizController = require('./controllers/Quiz.controller');
 const StudentAuthMiddleware = require('./middlewares/checkStudentAuth.middleware');
 // const validations = require('./validations');
@@ -14,6 +15,7 @@ router.post('/login', AuthController.login);
 router.post('/postQuestion', AdminController.postQuestion);
 
 router.get('/checkState', StudentController.checkState);
+router.get('/getQuestion/:questionId', QuestionController.getQuestionById);
 
 router.get('/quizQuestionsIds', QuizController.getQuizQuestionsIds);
 router.post('/postQuiz',[StudentAuthMiddleware.checkStudentAuth], QuizController.postQuiz);
