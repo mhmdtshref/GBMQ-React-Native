@@ -4,7 +4,7 @@ const sequelize = require('./sequelize.js');
 const Question = require('./Question.model');
 
 const Choice = sequelize.define('choices', {
-  text: { type: Sequelize.STRING(255), allowNull: false },
+  text: { type: Sequelize.STRING, allowNull: false },
   isRight: { type: Sequelize.BOOLEAN, allowNull: false },
 });
 

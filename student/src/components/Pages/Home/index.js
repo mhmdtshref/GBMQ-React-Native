@@ -11,7 +11,8 @@ import {
     BigTitle,
     MessageText,
     SmallTitle,
-    StyledHeader
+    StyledHeader,
+    StyledLoading,
 } from "./index.style";
 import homeImg from "./home-img.png";
 
@@ -22,17 +23,24 @@ class Home extends Component {
      this.state = {
        Quiz2Enabled: true,
        activitiesPopup: false,
-       studentState: 3,
    };
  }
 
- checkStudentState = () => new Promise ((resolve, reject) => {
 
-   if (this.state.studentState === 0 || this.state.studentState > 0) {
-     resolve(this.state.studentState);
-   } else {
-     reject(new Error('Response Error'));
-   }
+ checkStudentState = () => new Promise((resolve, reject) => {
+     axios
+         .get('/checkState')
+         .then(({data})=>{
+             if (data.success && data.data.studentState) {
+                     this.setState({studentState: data.data.studentState});
+                     resolve(data.data.studentState);
+             } else {
+                 reject(data.error)
+             }
+         })
+         .catch((axiosErr) => {
+             reject(axiosErr);
+         })
  });
 
  componentDidMount() {
@@ -62,7 +70,7 @@ class Home extends Component {
     this.props.history.push("/quiz")
   };
 
-    pageClicked = () => {
+  pageClicked = () => {
         if(this.state.activitiesPopup){
             this.setState({ activitiesPopup: false });
         }
@@ -70,7 +78,7 @@ class Home extends Component {
 
   render() {
     if (this.studentState != 2) {
-        return <h1> Loading... </h1>
+        return <StyledLoading> Loading... </StyledLoading>
         }
         return (
       <React.Fragment>
