@@ -9,4 +9,15 @@ const createChoice = (choice) => {
     questionId, text, isRight, raw: true,
   });
 };
-module.exports = { createChoice };
+
+const getChoiceByQuestionId = (id) => new Promise((resolve, reject) => {
+    Choice.findAll({ where: { questionId: id } })
+        .then((choices) => {
+            resolve(choices);
+        })
+        .catch((err) => {
+            reject(new Error('Find choices error'));
+        });
+});
+
+module.exports = { createChoice, getChoiceByQuestionId };
