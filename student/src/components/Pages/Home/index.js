@@ -11,7 +11,8 @@ import {
     BigTitle,
     MessageText,
     SmallTitle,
-    StyledHeader
+    StyledHeader,
+    StyledLoading,
 } from "./index.style";
 import homeImg from "./home-img.png";
 
@@ -26,30 +27,21 @@ class Home extends Component {
  }
 
 
- checkStudentState = () => {
-   return axios
-   .get('/checkState')
-   .then(({data})=>{
-      if (data.success) {
-          if (data.data.studentState) {
-              this.setState({studentState: data.data.studentState});
-            }
-            else {
-              throw new Error(data.error)
-            }
-          } else {
-            throw new Error(data.error)
-          }
-   })
-   .then(() => {
-     if (this.state.studentState === 0 || this.state.studentState > 0) {
-        return this.state.studentState;
-   }
- })
-   .catch(() => {
-      return new Error('Response Error')
-   })
- };
+ checkStudentState = () => new Promise((resolve, reject) => {
+     axios
+         .get('/checkState')
+         .then(({data})=>{
+             if (data.success && data.data.studentState) {
+                     this.setState({studentState: data.data.studentState});
+                     resolve(data.data.studentState);
+             } else {
+                 reject(data.error)
+             }
+         })
+         .catch((axiosErr) => {
+             reject(axiosErr);
+         })
+ });
 
  componentDidMount() {
    this.checkStudentState()
@@ -86,7 +78,7 @@ class Home extends Component {
 
   render() {
     if (this.studentState != 2) {
-        return <h1> Loading... </h1>
+        return <StyledLoading> Loading... </StyledLoading>
         }
         return (
       <React.Fragment>
