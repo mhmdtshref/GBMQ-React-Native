@@ -1,5 +1,5 @@
 const {
-  Question,
+  Question, Choice
 } = require('../models');
 const ChoiceController = require('./Choice.controller');
 const createQuestion = (question) => {
@@ -29,14 +29,14 @@ const addQuestionChoices = (question) => new Promise((resolve, reject) => {
 
 const getQuestionById = (req, res) => {
     const {questionId} = req.params;
-    Question.findOne({where: {id: questionId}})
-        .then(addQuestionChoices)
-        .then(({ question, choices }) => {
-            res.json({ success: true, data: { question, choices } });
+
+    Question.findOne({where: { id: questionId }, include: [{ model: Choice,attributes:['id', 'text'] }], attributes: [ 'id', 'text', 'imageUrl', 'type', 'quizNo' ] })
+        .then((question) => {
+            res.json({ success: true, data: { question }});
         })
         .catch((err) => {
             res.json({ success: false, error: err.message });
-        });
+        })
 };
 
 
