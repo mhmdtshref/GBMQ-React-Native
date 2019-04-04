@@ -6,6 +6,7 @@ const Question = sequelize.define('questions', {
   imageUrl: { type: Sequelize.STRING(512), allowNull: false },
   type: { type: Sequelize.BOOLEAN, allowNull: false },
   quizNo: { type: Sequelize.INTEGER, allowNull: false },
+  category: { type: Sequelize.STRING(50), allowNul: false },
 });
 
 module.exports = Question;
