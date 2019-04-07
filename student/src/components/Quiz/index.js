@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Question from "../Question";
+import axios from "axios";
 
 class Quiz extends Component {
 
@@ -15,11 +16,13 @@ class Quiz extends Component {
 
     getQuestionsIDs = (quizId) => {
         return new Promise((resolve, reject) => {
-            if(quizId){
-                resolve([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
-            } else {
-                reject(new Error('No questions on the list!'));
-            }
+            axios.get('/quizQuestionsIds')
+                .then(({ data }) => {
+                    resolve(data.data.quizQuestionsIds);
+                })
+                .catch((err) => {
+                    alert("Error: ", err);
+                })
         });
     };
 
@@ -31,10 +34,10 @@ class Quiz extends Component {
         })
     }
 
-    onClickNext = (choiceId) => {
+    onClickNext = (choiceId, cb) => {
         this.setState((prevState) => ({questionCounter: ++prevState.questionCounter, checkedChoices: prevState.checkedChoices.concat([choiceId]), }), () => {
-            console.log(this.state);
-        } );
+            cb();
+        });
     };
 
 
@@ -42,6 +45,7 @@ class Quiz extends Component {
         if((this.state.questionsIds).length === 0){
             return <h2>Loading...</h2>;
         } else {
+            console.log("Sent question id:: ", (this.state.questionsIds)[this.state.questionCounter]);
             return (
                 <React.Fragment>
                     <Question id={(this.state.questionsIds)[this.state.questionCounter]} questionNumber={this.state.questionCounter+1} buttonValue={this.state.buttonValue} onClickButton={this.onClickNext} />
