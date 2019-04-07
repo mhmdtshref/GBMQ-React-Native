@@ -1,19 +1,35 @@
-const {
-  Question,
-} = require('../models');
+const { Question, Choice } = require('../models');
 
 const createQuestion = (question) => {
   const {
-    text, imageUrl, type, quizNo,
+    text, imageUrl, type, quizNo, category,
   } = question;
   return Question.create({
-    text, imageUrl, type, quizNo, raw: true,
+    text,
+    imageUrl,
+    type,
+    quizNo,
+    category,
+    raw: true,
   });
 };
 
 const postQuestion = (req, res) => {
-  const question = req.body;
+  const {
+    choice1, choice2, choice3, choice4, ...question
+  } = req.body;
+  console.log('the body is ', req.body);
   createQuestion(question)
+    .then((createdEquestion) => {
+      console.log(createdEquestion.get('id'));
+      return Promise.all(
+        [choice1, choice2, choice3, choice4].map((choice) => {
+          const choiceObj = JSON.parse(choice);
+          choiceObj.questionId = createdEquestion.get('id');
+          return Choice.create(choiceObj);
+        }),
+      );
+    })
     .then(() => {
       res.json({ success: true });
     })
