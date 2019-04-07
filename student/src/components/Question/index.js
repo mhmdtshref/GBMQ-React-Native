@@ -12,7 +12,8 @@ class Question extends Component {
             imgName: '',
             questionNumber: '',
             choices: [],
-        }
+            choiceId: '',
+        };
     }
 
     componentDidMount(){
@@ -57,6 +58,11 @@ class Question extends Component {
         });
     }
 
+    onCheckChoice = (choiceId) => {
+        console.log("State is: ", this.state);
+        this.setState({ choiceId });
+    };
+
 
     render() {
         return (
@@ -67,8 +73,8 @@ class Question extends Component {
                     <StyledSignText>{this.props.questionNumber}/20</StyledSignText>
                 </StyledSign>
                 <StyledText>{this.state.text}</StyledText>
-                <StyledChoicesList type={true} choices={this.state.choices} onCheck={this.props.onCheck} questionId={this.props.questionId} />
-                <StyledButton onClick={this.props.onClickButton}> {this.props.buttonValue} </StyledButton>
+                <StyledChoicesList type={true} choices={this.state.choices} onCheck={this.onCheckChoice} questionId={this.props.questionId} />
+                <StyledButton onClick={() => {this.props.onClickButton(this.state.choiceId);}}> {this.props.buttonValue} </StyledButton>
             </StyledQuestion>
         );
     }

@@ -9,6 +9,7 @@ class Quiz extends Component {
             questionsIds: [],
             questionCounter: 0,
             buttonValue: 'Next',
+            checkedChoices: [],
         };
     }
 
@@ -30,8 +31,10 @@ class Quiz extends Component {
         })
     }
 
-    onClickNext = () => {
-        this.setState((prevState) => ({questionCounter: ++prevState.questionCounter}) );
+    onClickNext = (choiceId) => {
+        this.setState((prevState) => ({questionCounter: ++prevState.questionCounter, checkedChoices: prevState.checkedChoices.concat([choiceId]), }), () => {
+            console.log(this.state);
+        } );
     };
 
 
