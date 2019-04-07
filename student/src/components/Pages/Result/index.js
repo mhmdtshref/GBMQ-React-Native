@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from 'axios';
+
 import {
   BackgroundImage,
   StyledContent,
@@ -24,12 +26,25 @@ class Result extends Component {
     };
   }
 
-  getResult = () => {
-    this.setState({
-      score: 9,
-      percentage: 45,
-      rank: 56
-    });
+  getResult = () => new Promise((resolve, reject) => {
+      axios
+          .get('/getResult')
+          .then((data)=>{
+              if (data.success && data.mark >= 0) {
+                      this.setState({ score: 18, percentage: 45, rank: 56}, () => {
+                          resolve(data.data.studentState);
+                      });
+              } else {
+                  reject(data.error)
+              }
+          })
+          .catch((axiosErr) => {
+              reject(axiosErr);
+          })
+  });
+
+  goHome = () => {
+    this.props.history.push("/")
   };
 
   componentDidMount() {
@@ -58,7 +73,7 @@ class Result extends Component {
                 Rank: <span>{this.state.rank} of your age</span>
               </ResultLine>
             </Results>
-              <StyledButton>Home</StyledButton>
+              <StyledButton onClick = {this.goHome} >Home</StyledButton>
           </StyledContent>
         </React.Fragment>
     );
