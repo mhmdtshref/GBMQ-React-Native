@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Question from "../Question";
 import axios from "axios";
+import Question from "../Question";
 
 class Quiz extends Component {
 
@@ -14,7 +14,7 @@ class Quiz extends Component {
         };
     }
 
-    getQuestionsIDs = (quizId) => {
+    getQuestionsIDs = () => {
         return new Promise((resolve, reject) => {
             axios.get('/quizQuestionsIds')
                 .then(({ data }) => {
@@ -22,6 +22,7 @@ class Quiz extends Component {
                 })
                 .catch((err) => {
                     alert("Error: ", err);
+                    reject(err);
                 })
         });
     };

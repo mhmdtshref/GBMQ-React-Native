@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StyledText, StyledChoicesList, StyledQuestion, StyledSign, StyledSignImg, StyledSignText, StyledButton } from "./index.style";
 import axios from "axios";
+import { StyledText, StyledChoicesList, StyledQuestion, StyledSign, StyledSignImg, StyledSignText, StyledButton } from "./index.style";
 import Image from "../Image";
 import signImage from "./questionNoImg.png";
 
@@ -35,7 +35,6 @@ class Question extends Component {
 
         axios.get('/getQuestion/'+this.props.id)
             .then(({ data }) => {
-                console.log("Request for question done!, and responsed data:: ", data.data);
                 const { question } = data.data;
                 this.setState({ text: question.text, choices: question.choices });
             });
@@ -72,13 +71,11 @@ class Question extends Component {
     }
 
     onCheckChoice = (choiceId) => {
-        console.log("State is: ", this.state);
         this.setState({ choiceId });
     };
 
 
     render() {
-        console.log("now question is:", this.props.id);
         return (
             <StyledQuestion>
                 <Image url={`/public/images/questions/${this.state.imgName}`} />
