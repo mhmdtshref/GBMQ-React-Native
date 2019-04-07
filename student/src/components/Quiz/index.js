@@ -34,9 +34,24 @@ class Quiz extends Component {
         })
     }
 
+    postQuiz = () => {
+        axios.post('/postQuiz', { choices: this.state.checkedChoices })
+            .then(({ data }) => {
+                if(data.success){
+                    this.props.history.push('/result');
+                } else {
+                    alert(`Posting Error: ${data.err}`);
+                }
+            });
+    };
+
     onClickNext = (choiceId, cb) => {
         this.setState((prevState) => ({questionCounter: ++prevState.questionCounter, checkedChoices: prevState.checkedChoices.concat([choiceId]), }), () => {
-            cb();
+            if(this.state.questionCounter === (this.state.questionsIds).length){
+                this.postQuiz();
+            } else {
+                cb();
+            }
         });
     };
 
@@ -45,7 +60,6 @@ class Quiz extends Component {
         if((this.state.questionsIds).length === 0){
             return <h2>Loading...</h2>;
         } else {
-            console.log("Sent question id:: ", (this.state.questionsIds)[this.state.questionCounter]);
             return (
                 <React.Fragment>
                     <Question id={(this.state.questionsIds)[this.state.questionCounter]} questionNumber={this.state.questionCounter+1} buttonValue={this.state.buttonValue} onClickButton={this.onClickNext} />
