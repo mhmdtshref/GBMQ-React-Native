@@ -10,6 +10,18 @@ import Quiz from './components/Quiz';
 import Comparison from './components/Pages/Comparison';
 
 class App extends Component {
+
+    constructor(props){
+        super(props);
+        this.state= { quizId: 0, };
+    }
+
+    onStartAction = (quizId, history) => {
+        this.setState({ quizId }, () => {
+            history.push("/quiz");
+        });
+    };
+
   render() {
   return (
     <Router>
@@ -18,8 +30,8 @@ class App extends Component {
     <Route exact path='/' component={Home}/>
     <Route path='/login' component={Login}/>
     <Route exact path='/signup' component = {Signup}/>
-    <Route exact path='/start' component = {Start}/>
-    <Route path="/quiz/" render={(props) => <Quiz {...props} /> }  />
+    <Route exact path='/start'  render={ (props)=> <Start  {...props} onStartAction={this.onStartAction} />} />
+    <Route path="/quiz" render={(props) => <Quiz {...props} quizId={this.state.quizId}/> }  />
     <Route path='/result' component={Result}/>
     <Route exact path='/activities' component = {Start}/>
     <Route exact path='/comparison' component = {Comparison}/>
