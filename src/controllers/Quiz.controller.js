@@ -2,7 +2,8 @@ const Question = require('../models/Question.model');
 const StudentChoice = require('../models/StudentsChoice.model');
 
 const getQuizQuestionsIds = (req, res) => {
-    Question.findAll({ where: { quizNo: 1 }, attributes: [ 'id' ] })
+    const { quizId } = req.params;
+    Question.findAll({ where: { quizNo: quizId }, attributes: [ 'id' ] })
         .then((questions) => {
             return questions.map((question) => question.id);
         }).then((ids) => {
