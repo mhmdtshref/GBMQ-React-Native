@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from 'axios';
+
 import {
   BackgroundImage,
   StyledContent,
@@ -24,12 +26,26 @@ class Result extends Component {
     };
   }
 
-  getResult = () => {
-    this.setState({
-      score: 9,
-      percentage: 45,
-      rank: 56
-    });
+  getResult = () => new Promise((resolve, reject) => {
+      axios
+          .get('/getResult')
+          .then(({data})=>{
+              if (data.success & data.data.score>=0) {
+                      this.setState({ score: data.data.score, percentage: (((data.data.score)/16)*100),rank: 0}, () => {
+                          resolve(this.state.score,this.state.percentage);
+                      });
+              }
+              else {
+                  reject(data.error)
+              }
+          })
+          .catch((axiosErr) => {
+              reject(axiosErr);
+          })
+  });
+
+  goHome = () => {
+    this.props.history.push("/")
   };
 
   componentDidMount() {
@@ -49,7 +65,7 @@ class Result extends Component {
             </StyledHeader>
             <Results>
               <ResultLine>
-                Score: <span>{this.state.score}/20</span>
+                Score: <span>{this.state.score}/16</span>
               </ResultLine>
               <ResultLine>
                 Percentage: <span>{this.state.percentage}%</span>
@@ -58,7 +74,7 @@ class Result extends Component {
                 Rank: <span>{this.state.rank} of your age</span>
               </ResultLine>
             </Results>
-              <StyledButton>Home</StyledButton>
+              <StyledButton onClick = {this.goHome} >Home</StyledButton>
           </StyledContent>
         </React.Fragment>
     );
