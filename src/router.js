@@ -18,7 +18,7 @@ router.post('/postQuestion', AdminController.postQuestion);
 router.get('/checkState', StudentController.checkState);
 router.get('/getQuestion/:questionId', QuestionController.getQuestionById);
 
-router.get('/quizQuestionsIds', QuizController.getQuizQuestionsIds);
+router.get('/quizQuestionsIds/:quizId', QuizController.getQuizQuestionsIds);
 router.post('/postQuiz', [StudentAuthMiddleware.checkStudentAuth], QuizController.postQuiz);
 
 router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultController);
