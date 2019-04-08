@@ -81,7 +81,7 @@ class Question extends Component {
                 <Image url={`/public/images/questions/${this.state.imgName}`} />
                 <StyledSign>
                     <StyledSignImg src={signImage} />
-                    <StyledSignText>{this.props.questionNumber}/20</StyledSignText>
+                    <StyledSignText>{this.props.questionNumber}/{this.props.quizQuestionsNumber}</StyledSignText>
                 </StyledSign>
                 <StyledText>{this.state.text}</StyledText>
                 <StyledChoicesList type={true} choices={this.state.choices} onCheck={this.onCheckChoice} questionId={this.props.questionId} />
