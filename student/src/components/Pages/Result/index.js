@@ -31,7 +31,7 @@ class Result extends Component {
           .get('/getResult')
           .then(({data})=>{
               if (data.success & data.data.score>=0) {
-                      this.setState({ score: data.data.score, percentage: (((data.data.score)/20)*100),rank: 0}, () => {
+                      this.setState({ score: data.data.score, percentage: (((data.data.score)/16)*100),rank: 0}, () => {
                           resolve(this.state.score,this.state.percentage);
                       });
               }
@@ -65,7 +65,7 @@ class Result extends Component {
             </StyledHeader>
             <Results>
               <ResultLine>
-                Score: <span>{this.state.score}/20</span>
+                Score: <span>{this.state.score}/16</span>
               </ResultLine>
               <ResultLine>
                 Percentage: <span>{this.state.percentage}%</span>
