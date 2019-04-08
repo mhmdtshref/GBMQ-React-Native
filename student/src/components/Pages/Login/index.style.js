@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Title = styled.h1`
   font-size: 30px;
@@ -52,7 +53,7 @@ export const StyledSpan = styled.span`
   z-index: 15;
   margin-left: 30%;
 `;
-export const StyledLink = styled.span`
+export const StyledLink = styled(Link)`
   position: relative;
   z-index: 15;
   color: #2d55cf;

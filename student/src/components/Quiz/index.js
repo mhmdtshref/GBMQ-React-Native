@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Question from "../Question";
 
 class Quiz extends Component {
@@ -9,16 +10,20 @@ class Quiz extends Component {
             questionsIds: [],
             questionCounter: 0,
             buttonValue: 'Next',
+            checkedChoices: [],
         };
     }
 
-    getQuestionsIDs = (quizId) => {
+    getQuestionsIDs = () => {
         return new Promise((resolve, reject) => {
-            if(quizId){
-                resolve([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
-            } else {
-                reject(new Error('No questions on the list!'));
-            }
+            axios.get('/quizQuestionsIds')
+                .then(({ data }) => {
+                    resolve(data.data.quizQuestionsIds);
+                })
+                .catch((err) => {
+                    alert("Error: ", err);
+                    reject(err);
+                })
         });
     };
 
@@ -30,8 +35,25 @@ class Quiz extends Component {
         })
     }
 
-    onClickNext = () => {
-        this.setState((prevState) => ({questionCounter: ++prevState.questionCounter}) );
+    postQuiz = () => {
+        axios.post('/postQuiz', { choices: this.state.checkedChoices })
+            .then(({ data }) => {
+                if(data.success){
+                    this.props.history.push('/result');
+                } else {
+                    alert(`Posting Error: ${data.err}`);
+                }
+            });
+    };
+
+    onClickNext = (choiceId, cb) => {
+        this.setState((prevState) => ({questionCounter: ++prevState.questionCounter, checkedChoices: prevState.checkedChoices.concat([choiceId]), }), () => {
+            if(this.state.questionCounter === (this.state.questionsIds).length){
+                this.postQuiz();
+            } else {
+                cb();
+            }
+        });
     };
 
 
