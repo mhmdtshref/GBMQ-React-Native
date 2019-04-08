@@ -9,7 +9,7 @@ class ChoicesList extends Component {
     }
 
     renderChoices = () => (this.props.choices).map((choice) => {
-            return <Choice text={choice.text} choiceId={choice.id} name="questionChoices" onCheck={() => { this.props.onCheck(this.props.questionId, choice.id)}} />
+            return <Choice text={choice.text} choiceId={choice.id} name="questionChoices" onCheck={() => { this.props.onCheck(choice.id)}} />
         });
 
     render() {

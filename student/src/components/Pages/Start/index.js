@@ -17,10 +17,9 @@ class Start extends Component {
    }
 
 
-  onStartAction = () => {
-    this.props.history.push("/quiz")
-  }
+
   render() {
+       const { history } = this.props;
     return (
       <React.Fragment>
         <StyledPage>
@@ -28,7 +27,7 @@ class Start extends Component {
           <Title>Great British Money</Title>
           <Title1>Quiz</Title1>
           <StyledImg src={startImg} />
-          <StyledBtn onClick = {this.onStartAction}> Start first Quiz </StyledBtn>
+          <StyledBtn onClick = {() => {this.props.onStartAction(1,history);}}> Start first Quiz </StyledBtn>
         </StyledPage>
       </React.Fragment>
     );

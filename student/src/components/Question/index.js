@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { StyledText, StyledChoicesList, StyledQuestion, StyledSign, StyledSignImg, StyledSignText, StyledButton } from "./index.style";
 import Image from "../Image";
 import signImage from "./questionNoImg.png";
@@ -12,10 +13,11 @@ class Question extends Component {
             imgName: '',
             questionNumber: '',
             choices: [],
-        }
+            choiceId: '',
+        };
     }
 
-    componentDidMount(){
+    updateQuestionData = () => {
         this.getQuestionData(this.props.questionId)
             .then((questionData) => {
                 this.setState(questionData);
@@ -23,9 +25,20 @@ class Question extends Component {
             .catch((err) => {
                 alert("Error with loading the question: " + err.message);
             });
+    };
+
+    componentDidMount(){
+        this.updateQuestionData();
     }
 
     getQuestionData(){
+
+        axios.get('/getQuestion/'+this.props.id)
+            .then(({ data }) => {
+                const { question } = data.data;
+                this.setState({ text: question.text, choices: question.choices });
+            });
+
         return new Promise((resolve, reject) => {
             const imgName = 'question1.jpg';
             const choices = [
@@ -57,6 +70,10 @@ class Question extends Component {
         });
     }
 
+    onCheckChoice = (choiceId) => {
+        this.setState({ choiceId });
+    };
+
 
     render() {
         return (
@@ -67,8 +84,8 @@ class Question extends Component {
                     <StyledSignText>{this.props.questionNumber}/20</StyledSignText>
                 </StyledSign>
                 <StyledText>{this.state.text}</StyledText>
-                <StyledChoicesList type={true} choices={this.state.choices} onCheck={this.props.onCheck} questionId={this.props.questionId} />
-                <StyledButton onClick={this.props.onClickButton}> {this.props.buttonValue} </StyledButton>
+                <StyledChoicesList type={true} choices={this.state.choices} onCheck={this.onCheckChoice} questionId={this.props.questionId} />
+                <StyledButton onClick={() => {this.props.onClickButton(this.state.choiceId, this.updateQuestionData);}}> {this.props.buttonValue} </StyledButton>
             </StyledQuestion>
         );
     }
