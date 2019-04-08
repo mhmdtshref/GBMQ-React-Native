@@ -43,6 +43,15 @@ const matchPasswords = (student, password) => new Promise((resolve, reject) => {
 
 const signup = (req, res) => {
   const student = req.body;
+  if (student.username === '') {
+    return res.json({ success: false, error: 'Please insert your username' });
+  }
+  if (student.password.length < 6) {
+    return res.json({ success: false, error: 'Your password must be at least 6 character' });
+  }
+  if (student.postcode.length < 2) {
+    return res.json({ success: false, error: 'Your postcode must be at least 2 character' });
+  }
   hashStudentPassword(student)
     .then(StudentController.create)
     .then(generateIdCookie)
@@ -51,6 +60,8 @@ const signup = (req, res) => {
       res.json({ success: true });
     })
     .catch((err) => {
+      console.log(Object.keys(err.name));
+      console.log(err.name);
       res.json({ success: false, error: err.message });
     });
 };
