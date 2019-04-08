@@ -16,7 +16,7 @@ class Quiz extends Component {
 
     getQuestionsIDs = () => {
         return new Promise((resolve, reject) => {
-            axios.get('/quizQuestionsIds')
+            axios.get(`/quizQuestionsIds/${this.props.quizId}`)
                 .then(({ data }) => {
                     resolve(data.data.quizQuestionsIds);
                 })
