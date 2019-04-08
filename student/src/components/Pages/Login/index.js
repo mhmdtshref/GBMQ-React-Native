@@ -70,7 +70,7 @@ class Login extends Component {
           />
           <StyledDiv>
             <StyledSpan>New User ?</StyledSpan>
-            <StyledLink> Signup </StyledLink>
+            <StyledLink to="/signup"> Signup </StyledLink>
           </StyledDiv>
         </StyledPage>
       </React.Fragment>

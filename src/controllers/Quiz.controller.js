@@ -15,8 +15,7 @@ const getQuizQuestionsIds = (req, res) => {
 
 const postQuiz = (req, res) => {
     const { choices } = req.body;
-    const choicesPromises = (JSON.parse(choices)).map((choiceId) => {
-        console.log("STudent id:", req.studentId);
+    const choicesPromises = (choices).map((choiceId) => {
         return StudentChoice.create({ choiceId, studentId: req.studentId });
     });
     Promise.all(choicesPromises)
