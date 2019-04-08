@@ -63,7 +63,7 @@ class Quiz extends Component {
         } else {
             return (
                 <React.Fragment>
-                    <Question id={(this.state.questionsIds)[this.state.questionCounter]} questionNumber={this.state.questionCounter+1} buttonValue={this.state.buttonValue} onClickButton={this.onClickNext} />
+                    <Question id={(this.state.questionsIds)[this.state.questionCounter]} quizQuestionsNumber={this.state.questionsIds.length} questionNumber={this.state.questionCounter+1} buttonValue={this.state.buttonValue} onClickButton={this.onClickNext} />
                 </React.Fragment>
             );
         }
