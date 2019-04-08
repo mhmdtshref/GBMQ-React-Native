@@ -29,12 +29,13 @@ class Result extends Component {
   getResult = () => new Promise((resolve, reject) => {
       axios
           .get('/getResult')
-          .then((data)=>{
-              if (data.success && data.mark >= 0) {
-                      this.setState({ score: 18, percentage: 45, rank: 56}, () => {
-                          resolve(data.data.studentState);
+          .then(({data})=>{
+              if (data.success & data.data.score>=0) {
+                      this.setState({ score: data.data.score, percentage: (((data.data.score)/20)*100),rank: 0}, () => {
+                          resolve(this.state.score,this.state.percentage);
                       });
-              } else {
+              }
+              else {
                   reject(data.error)
               }
           })
