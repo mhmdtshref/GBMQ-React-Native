@@ -72,7 +72,7 @@ class Result extends Component {
   componentDidMount() {
     this.getComparisonResult()
       .then(this.setComparisonResult)
-      .catch(err => {
+      .catch((err) => {
         alert("Loading results error: ", err.message);
       });
   }
