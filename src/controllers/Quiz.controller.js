@@ -1,5 +1,6 @@
 const Question = require('../models/Question.model');
 const StudentChoice = require('../models/StudentsChoice.model');
+const Quiz1Mark = require('../models/Quiz1Mark.model');
 
 const getQuizQuestionsIds = (req, res) => {
   const { quizId } = req.params;
@@ -24,8 +25,18 @@ const postQuiz = (req, res) => {
     });
 };
 
+const getStudentQuiz1MarkById = studentId => new Promise((resolve, reject) => {
+  Quiz1Mark.findOne({ where: { stdid: studentId }, attributes: ['stdid', 'date'] })
+    .then((quiz1Mark) => {
+      resolve(quiz1Mark);
+    })
+    .catch((err) => {
+      reject(err);
+    });
+});
 
 module.exports = {
   getQuizQuestionsIds,
   postQuiz,
+  getStudentQuiz1MarkById,
 };
