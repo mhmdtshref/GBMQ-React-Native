@@ -27,7 +27,7 @@ class App extends Component {
     <Router>
     <div className="App">
 
-    <Route exact path='/' component={Home}/>
+    <Route exact path='/' render={ (props)=> <Home  {...props} onStartAction={this.onStartAction} />}/>
     <Route path='/login' component={Login}/>
     <Route exact path='/signup' component = {Signup}/>
     <Route exact path='/start'  render={ (props)=> <Start  {...props} onStartAction={this.onStartAction} />} />
