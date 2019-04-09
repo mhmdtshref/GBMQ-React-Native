@@ -7,11 +7,14 @@ class Choice extends Component {
         super(props);
     }
 
-    render() {
+  render() {
         return (
             <React.Fragment>
-                <StyledChoice onClick={this.props.onCheck}>
-                    <StyledInput type="radio" value={this.props.id} name={this.props.name} />
+                <StyledChoice onClick={()=> {
+                      this.props.onCheck()
+                    }
+                }>
+                    <StyledInput type="radio" value={this.props.id} checked= {this.props.checked} name={this.props.name} />
                     <StyledLabel>{this.props.text}</StyledLabel>
                 </StyledChoice>
             </React.Fragment>
