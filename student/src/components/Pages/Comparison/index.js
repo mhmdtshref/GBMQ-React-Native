@@ -35,14 +35,16 @@ class Result extends Component {
       .get('/getComparison')
       .then(({data}) =>{
         if (data.success & data.data.score>=0 & data.data.score2>=0) {
+              const Mark1 = (data.data.score/16).toFixed(2);
+              const Mark2 = (data.data.score2/15).toFixed(2);
+
               const results = {
-                score: data.data.score/16,
+                score: Mark1*100,
                 rank: 0,
-                score2: data.data.score2/15,
+                score2: Mark2*100,
                 rank2:0,
-                scoreImprovement: this.score2-this.score,
-                percentageImprovement: ((this.score2)*100)-((this.score)*100),
-                rankImprovement: this.rank2 - this.rank,
+                scoreImprovement: (Mark2*100)-(Mark1*100),
+                rankImprovement: 0,
               }
               resolve(results);
             }
