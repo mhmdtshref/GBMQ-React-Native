@@ -20,8 +20,8 @@ const getActivitiesByDate = (quiz1Mark) => new Promise((resolve, reject) => {
         .then((activities) => {
             const activitiesNumber = activities.length;
             const filteredActivities = activities.filter((activity) => {
-                const now = moment(new Date());
-                const end = moment(quiz1Mark.dataValues.date.toDateString());
+                const now = moment();
+                const end = moment(quiz1Mark.dataValues.date.toUTCString());
                 const durationAsDays = (moment.duration(now.diff(end))).asDays();
                 return durationAsDays >= activity.day;
             });
