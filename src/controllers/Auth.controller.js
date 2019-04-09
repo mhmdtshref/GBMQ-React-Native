@@ -51,8 +51,6 @@ const signup = (req, res) => {
       res.json({ success: true });
     })
     .catch((err) => {
-      console.log(Object.keys(err.name));
-      console.log(err.name);
       res.json({ success: false, error: err.message });
     });
 };
