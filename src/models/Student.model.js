@@ -29,12 +29,8 @@ const Student = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        len: {
-          args: 6,
-          msg: 'Your password must be at least 6 character',
-        },
+        len: { args: 6, msg: 'Password must be at least 6 characters' },
       },
-
     },
     age: {
       type: Sequelize.INTEGER,
@@ -59,9 +55,8 @@ const Student = sequelize.define(
     postcode: {
       type: Sequelize.STRING,
       allowNull: false,
-      len: {
-        args: 2,
-        msg: 'Your password must be at least 6 character',
+      validate: {
+        len: { args: 2, msg: 'Postcode must be at least 2 characters' },
       },
     },
   },
