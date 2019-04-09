@@ -137,8 +137,10 @@ const checkState = (req, res) => {
     });
 };
 
+
 module.exports = {
   create,
+    findStudentById,
   findStudentByUsername,
   checkState,
 };
