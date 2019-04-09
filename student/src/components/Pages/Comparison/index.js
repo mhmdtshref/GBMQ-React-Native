@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import {
   StyledContent,
   CongratsImg,
@@ -30,22 +31,32 @@ class Result extends Component {
   }
   getComparisonResult = () => {
     return new Promise((resolve, reject) => {
-      const results = {
-        score: 75,
-        rank: 22,
-        score2: 80,
-        rank2: 13,
-        scoreImprovement: 5,
-        rankImprovement: 9,
-      };
-      if (results) {
-        resolve(results);
-      } else {
-        reject(new Error("No results found!"));
-      }
-    });
-  };
+      axios
+      .get('/getComparison')
+      .then(({data}) =>{
+        if (data.success & data.data.score>=0 & data.data.score2>=0) {
+              const Mark1 = (data.data.score/16).toFixed(2);
+              const Mark2 = (data.data.score2/15).toFixed(2);
 
+              const results = {
+                score: Mark1*100,
+                rank: 0,
+                score2: Mark2*100,
+                rank2:0,
+                scoreImprovement: (Mark2*100)-(Mark1*100),
+                rankImprovement: 0,
+              }
+              resolve(results);
+            }
+        else {
+              reject(data.error)
+          }
+      })
+      .catch((axiosErr) => {
+          reject(axiosErr);
+      })
+  });
+}
   setComparisonResult = results => {
     return new Promise((resolve, reject) => {
       this.setState({ results }, () => {
@@ -61,7 +72,7 @@ class Result extends Component {
   componentDidMount() {
     this.getComparisonResult()
       .then(this.setComparisonResult)
-      .catch(err => {
+      .catch((err) => {
         alert("Loading results error: ", err.message);
       });
   }

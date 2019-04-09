@@ -67,9 +67,6 @@ class Home extends Component {
   openActivities = () => {
       this.setState({ activitiesPopup: true });
   };
-  onSecondQuiz = () => {
-    this.props.history.push("/quiz")
-  };
 
   pageClicked = () => {
         if(this.state.activitiesPopup){
@@ -78,6 +75,8 @@ class Home extends Component {
     };
 
   render() {
+    const { history } = this.props;
+    console.log(this.props);
     if (this.state.studentState !== 2) {
         return <StyledLoading> Loading... </StyledLoading>
         }
@@ -92,7 +91,7 @@ class Home extends Component {
                 <MessageText> Now, you need to view tutorials videos click on the button below </MessageText>
                 <StyledImg src={homeImg} />
                 <StyledActivitiesButton onClick = {this.openActivities}> Watch Course Videos </StyledActivitiesButton>
-                <StyledQuizButton onClick = {this.onSecondQuiz} disabled = {!this.state.Quiz2Enabled} > Go to Second Quiz </StyledQuizButton>
+                <StyledQuizButton onClick = {() => {this.props.onStartAction(2,history);}} > Go to Second Quiz </StyledQuizButton>
             </StyledHome>
             { this.state.activitiesPopup ? <Activities/> : null}
         </StyledContent>

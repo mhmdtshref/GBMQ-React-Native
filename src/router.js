@@ -8,6 +8,7 @@ const QuizController = require('./controllers/Quiz.controller');
 const StudentAuthMiddleware = require('./middlewares/checkStudentAuth.middleware');
 const ResultController = require('./controllers/Result.controller');
 const ActivityController = require('./controllers/Activity.controller');
+const ComparisonController = require('./controllers/Comparison.controller');
 // const validations = require('./validations');
 
 const router = express.Router();
@@ -24,6 +25,7 @@ router.post('/postQuiz', [StudentAuthMiddleware.checkStudentAuth], QuizControlle
 
 router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultController);
 router.get('/getActivities', [ StudentAuthMiddleware.checkStudentAuth ], ActivityController.getActivities);
+router.get('/getComparison', [StudentAuthMiddleware.checkStudentAuth], ComparisonController);
 
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
