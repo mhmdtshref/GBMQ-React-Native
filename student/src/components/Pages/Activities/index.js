@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 import { ActivitiesGroup, ActivityButton, NextActivityButton } from "./index.style"
 class Activities extends Component {
 
@@ -11,63 +13,13 @@ class Activities extends Component {
         };
     }
 
-    getDays = () => {
-        return new Promise((resolve, reject) => {
-            const days = [{ order: 1, key: 'Day 1', link: 'https://youtube.com/' }, { order: 2, key: 'Day 2', link: 'https://youtube.com/' }];
-            if(days){
-                resolve(days);
-            } else {
-                reject(new Error('No days found!'));
-            }
+
+    setDaysAndNumber = ({ data }) => new Promise((resolve) => {
+        const { activities, fullCount } = data.data;
+        this.setState({ days: activities, originalDaysNumber: fullCount }, () => {
+            resolve({ days: this.state.days, originalDaysNumber: this.state.originalDaysNumber });
         });
-    };
-
-    setDays = (days) => {
-        return new Promise((resolve, reject) => {
-            this.setState({days}, () => {
-                if(days){
-                    resolve();
-                } else {
-                    reject(new Error('Set State Error!'));
-                }
-            });
-        });
-    };
-
-    getOriginalDaysNumber = () => {
-        return new Promise((resolve, reject) => {
-            const num = 5;
-            if(num){
-                resolve(num);
-            } else {
-                reject(new Error('No Number found!'));
-            }
-        });
-    };
-
-    setOriginalDaysNumber = (originalDaysNumber) => {
-        return new Promise((resolve, reject) => {
-            this.setState({ originalDaysNumber }, () => {
-                if(originalDaysNumber){
-                    resolve();
-                } else {
-                    reject(new Error('Set State Error!'));
-                }
-            });
-        })
-    };
-
-    componentDidMount(){
-        this.getDays()
-            .then(this.setDays)
-            .then(this.getOriginalDaysNumber)
-            .then(this.setOriginalDaysNumber)
-            .then(() => this.renderDaysComponents(this.state.days, this.state.originalDaysNumber))
-            .then(this.setRenderedDaysComponents)
-            .catch((error) => {
-                alert("Error in the App: " + error.message);
-            });
-    }
+    });
 
     renderNextDays = (studentDaysNumber, originalDaysNumber) => {
         if(originalDaysNumber > studentDaysNumber){
@@ -79,27 +31,22 @@ class Activities extends Component {
         }
     };
 
-    renderDaysComponents = (days, originalDaysNumber) => {
-        return new Promise((resolve, reject) => {
-            const renderedDays = this.state.days.sort((dayA, dayB) => dayA.order > dayB.order).map((day) => {
-                return <ActivityButton onClick={() => { window.location = day.link }}>{ day.key }</ActivityButton>
-            });
-            if(renderedDays){
-                resolve(renderedDays.concat(this.renderNextDays(days.length, originalDaysNumber)));
-            } else {
-                reject(new Error('Creating days error!'));
-            }
-        })
+    renderDaysComponents = ({ days, originalDaysNumber }) => {
+        const renderedDays = this.state.days.sort((dayA, dayB) => dayA.order > dayB.order).map((day) => {
+            return <ActivityButton onClick={() => { window.location = day.link }}>{ day.key }</ActivityButton>
+        });
+        if(renderedDays){
+            this.setState({ renderedDays: renderedDays.concat(this.renderNextDays(days.length, originalDaysNumber)) });
+        }
     };
 
-    setRenderedDaysComponents = (renderedDaysComponents) => {
-        this.setState(
-            { renderedDays: renderedDaysComponents },
-            () => {
-                return new Promise(resolve => resolve())
-            }
-        );
-    };
+    componentDidMount(){
+        axios.get('/getActivities')
+            .then(this.setDaysAndNumber)
+            .then(this.renderDaysComponents)
+            .catch((err) => { alert(`Error happen: ${err.message}`) });
+    }
+
 
   render() {
     return  (
