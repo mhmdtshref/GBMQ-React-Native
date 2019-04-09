@@ -16,8 +16,8 @@ class Quiz extends Component {
 
     getQuestionsIDs = () => {
         return new Promise((resolve, reject) => {
-            axios.get(`/quizQuestionsIds/${this.props.quizId}`)
-                .then(({ data }) => {
+          return axios.get(`/quizQuestionsIds/${this.props.quizId}`)
+              .then(({ data }) => {
                     resolve(data.data.quizQuestionsIds);
                 })
                 .catch((err) => {
@@ -39,7 +39,12 @@ class Quiz extends Component {
         axios.post('/postQuiz', { choices: this.state.checkedChoices })
             .then(({ data }) => {
                 if(data.success){
+                  if(this.props.quizId==1){
                     this.props.history.push('/result');
+                  }
+                  else if(this.props.quizId==2){
+                    this.props.history.push('/comparison');
+                  }
                 } else {
                     alert(`Posting Error: ${data.err}`);
                 }
@@ -47,6 +52,7 @@ class Quiz extends Component {
     };
 
     onClickNext = (choiceId, cb) => {
+      if(choiceId){
         this.setState((prevState) => ({questionCounter: ++prevState.questionCounter, checkedChoices: prevState.checkedChoices.concat([choiceId]), }), () => {
             if(this.state.questionCounter === (this.state.questionsIds).length){
                 this.postQuiz();
@@ -54,6 +60,9 @@ class Quiz extends Component {
                 cb();
             }
         });
+      } else {
+          alert('You must choose!!');
+      }
     };
 
 
