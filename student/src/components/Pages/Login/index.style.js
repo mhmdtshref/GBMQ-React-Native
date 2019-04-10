@@ -2,13 +2,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Title = styled.h1`
-  font-size: 30px;
+  font-size: 27px;
+  text-align:center;
   font-family: "Black Han Sans", sans-serif;
   color: #2d55cf;
-  text-align: center;
   padding-top: 10vh;
   position: relative;
-  z-index: 15;
 `;
 
 export const Title1 = styled.h1`
@@ -17,8 +16,6 @@ export const Title1 = styled.h1`
   color: #2d55cf;
   text-align: center;
   position: relative;
-  z-index: 15;
-  margin-bottom: 85%;
 `;
 
 export const Title2 = styled.h1`
@@ -39,19 +36,20 @@ export const StyledPage = styled.div`
 `;
 
 export const StyledBk = styled.img`
-  display: flex;
-  flex-direction: column;
   width: 100%;
   position: fixed;
-  background-color: #4bc0d8;
-  height: 100vh;
-  padding: 0;
+  height: 100%;
+`;
+
+export const StyledB = styled.img`
+width: 90vw;
+margin: 5vh 5vw 0vh 5vw;
+position:relative;
 `;
 
 export const StyledSpan = styled.span`
   position: relative;
-  z-index: 15;
-  margin-left: 30%;
+  margin-left: 5vw;
 `;
 export const StyledLink = styled(Link)`
   position: relative;
@@ -63,9 +61,10 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledDiv = styled.span`
-  width: 50%;
-  margin-top: 5%;
-  height: 60px;
+  width: 67vw;
+  margin-top: 5vh;
+  height: 60vh;
   display: inline;
-  margin-top: 5px;
+  margin-left: 28vw;
+
 `;

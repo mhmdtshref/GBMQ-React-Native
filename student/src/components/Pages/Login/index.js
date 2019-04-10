@@ -8,9 +8,13 @@ import {
   StyledBk,
   StyledSpan,
   StyledLink,
-  StyledDiv
+  StyledDiv,
+  StyledB,
 } from "./index.style";
-import bg from "./login-bg.png";
+import bg from "./bg.png";
+import b from "./b.png";
+
+
 
 class Login extends Component {
 
@@ -62,6 +66,7 @@ class Login extends Component {
           <StyledBk src={bg} />
           <Title>Great British Money</Title>
           <Title1>Quiz</Title1>
+          <StyledB src={b} />
           <MainForm
             fields={fields}
             action={this.onSubmitAction}
