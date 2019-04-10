@@ -82,11 +82,26 @@ export const StyledQuizButton = styled.button`
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   position: relative;
-  &:disabled {
-    opacity: 0.65;
-    background: #6c757d;
-    cursor: not-allowed;
-}
+`;
+
+export const DisabledStyledQuizButton = styled.button`
+  border-radius: 20px;
+  border: none;
+  display: block;
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
+  background: #6c757d;
+  width: 45vw;
+  height: 35px;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  position: relative;
+  opacity: 0.65;
+  cursor: not-allowed;
 `;
 
 export const StyledLoading = styled.h1`
