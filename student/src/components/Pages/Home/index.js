@@ -7,6 +7,7 @@ import {
     StyledHome,
     StyledActivitiesButton,
     StyledQuizButton,
+    DisabledStyledQuizButton,
     StyledImg,
     BigTitle,
     MessageText,
@@ -22,6 +23,7 @@ class Home extends Component {
      super(props);
      this.state = {
        activitiesPopup: false,
+       Quiz2ButtonText: 'Quiz 2',
    };
  }
 
@@ -66,17 +68,20 @@ class Home extends Component {
       }
   });
 
-  renderQuiz2Button = () => {
-      const { history } = this.props;
-      console.log("I'm HERE!");
-      this.setState((prevState) => ({ Quiz2Button: prevState.remainingDays <= 0 ?
-              <StyledQuizButton onClick = {() => {this.props.onStartAction(2,history);}} > Go to Second Quiz </StyledQuizButton>
-              : <StyledQuizButton disabled={true}> Days remaining: {this.state.remainingDays} </StyledQuizButton> }));
+  quiz2ButtonEvent = () => {
+      if(this.state.remainingDays <= 0){
+          this.props.onStartAction(2,this.props.history);
+      } else {
+          this.setState((prevState) => ({ Quiz2ButtonText: `${prevState.remainingDays} Days remaining` }), () => {
+              setTimeout(() => {
+                  this.setState({ Quiz2ButtonText: 'Quiz 2' });
+              }, 2000);
+          });
+      }
   };
 
   componentDidMount() {
       this.redirectByState()
-          .then(this.renderQuiz2Button)
           .catch((err) => { alert(`Loading Error: ${err.message}`) })
   }
 
@@ -105,7 +110,9 @@ class Home extends Component {
                 <MessageText> Now, you need to view tutorials videos click on the button below </MessageText>
                 <StyledImg src={homeImg} />
                 <StyledActivitiesButton onClick = {this.openActivities}> Watch Course Videos </StyledActivitiesButton>
-                {this.state.Quiz2Button}
+                {this.stateremainingDays <= 0 ?
+                    (<StyledQuizButton onClick = {this.quiz2ButtonEvent} > Go to Second Quiz </StyledQuizButton>)
+                    : (<DisabledStyledQuizButton onClick={this.quiz2ButtonEvent}> { this.state.Quiz2ButtonText } </DisabledStyledQuizButton>)}
             </StyledHome>
             { this.state.activitiesPopup ? <Activities/> : null}
         </StyledContent>
