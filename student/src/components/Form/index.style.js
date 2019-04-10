@@ -11,7 +11,6 @@ export const StyledForm = styled(Form)`
   margin: 10vh 15vh 0vh 15vw
   width: 70%;
   position: relative;
-  z-index: 15;
 `;
 
 export const StyledLabel = styled.label`
