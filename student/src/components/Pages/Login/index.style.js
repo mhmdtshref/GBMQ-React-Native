@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Title = styled.h1`
-  font-size: 27px;
+  font-size: 7vw;
   text-align:center;
   font-family: "Black Han Sans", sans-serif;
   color: #2d55cf;
@@ -11,24 +11,11 @@ export const Title = styled.h1`
 `;
 
 export const Title1 = styled.h1`
-  font-size: 40px;
+  font-size: 10vw;
   font-family: "Black Han Sans", sans-serif;
   color: #2d55cf;
   text-align: center;
   position: relative;
-`;
-
-export const Title2 = styled.h1`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: normal;
-  text-align: left;
-  color: #000000;
-  text-align: center;
-  position: relative;
-  z-index: 15;
 `;
 
 export const StyledPage = styled.div`
@@ -60,11 +47,13 @@ export const StyledLink = styled(Link)`
   margin-left: 1%;
 `;
 
-export const StyledDiv = styled.span`
-  width: 67vw;
-  margin-top: 5vh;
-  height: 60vh;
-  display: inline;
-  margin-left: 28vw;
+export const StyledCenteredDiv = styled.div`
+  width: 100vw;
+  text-align: center;
+`;
 
+export const LastStyledCenteredDiv = styled.div`
+  width: 100vw;
+  text-align: center;
+  margin-bottom: 5vh;
 `;
