@@ -45,7 +45,6 @@ export const MessageText = styled.p`
 export const StyledImg = styled.img`
   width: 100%;
   position: relative;
-  height: 50vh;
 `;
 
 export const StyledActivitiesButton = styled.button`
