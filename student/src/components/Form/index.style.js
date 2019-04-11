@@ -8,7 +8,7 @@ export const StyledForm = styled(Form)`
   flex-flow: column wrap;
   align-items: center;
   flex-wrap: wrap;
-  margin: 10vh 15vh 0vh 15vw
+  margin: 10vh 15vw 0vh 15vw
   width: 70%;
   position: relative;
 `;
