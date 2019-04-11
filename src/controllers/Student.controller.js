@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
+const moment = require('moment');
 const Student = require('../models/Student.model');
 const Quiz1Mark = require('../models/Quiz1Mark.model');
 const Quiz2Mark = require('../models/Quiz2Mark.model');
-const StudentsChoice = require('../models/StudentsChoice.model');
+const Activity = require('../models/Activity.model');
+const QuizController = require('./Quiz.controller');
 
 require('env2')('config.env');
 
@@ -89,18 +91,17 @@ const checkQuiz1 = student => new Promise((resolve, reject) => {
     });
 });
 
-const getStudentQuiz1Date = studentId => new Promise((resolve, reject) => {
-  StudentsChoice.findOne({ studentid: studentId })
-    .then((studentChoice) => {
-      if (!studentChoice) {
-        reject(new Error('1'));
-      } else {
-        resolve(studentChoice.createdAt);
-      }
-    })
-    .catch((err) => {
-      reject(err);
-    });
+const quiz2RemainingDays = (quiz1Mark) => new Promise((resolve, reject) => {
+    Activity.count()
+        .then((activitiesCount) => {
+            const now = moment();
+            const end = moment(quiz1Mark.dataValues.date.toUTCString());
+            const durationAsDays = (moment.duration(now.diff(end))).asDays();
+            resolve(activitiesCount - durationAsDays);
+        })
+        .catch((err) => {
+            reject(err);
+        })
 });
 
 const checkState = (req, res) => {
@@ -120,9 +121,10 @@ const checkState = (req, res) => {
           res.json({ success: true, data: { studentState: 1 } });
           break;
         case '2':
-          getStudentQuiz1Date(req.studentId)
-            .then((createdAt) => {
-              res.json({ success: true, data: { studentState: 2, quiz1Date: createdAt } });
+          QuizController.getStudentQuiz1MarkById(req.studentId.id)
+              .then(quiz2RemainingDays)
+            .then((remainingDays) => {
+              res.json({ success: true, data: { studentState: 2, remainingDays: Math.ceil(remainingDays) } });
             })
             .catch((getQuizErr) => {
               res.json({ success: false, error: getQuizErr.message });
@@ -137,8 +139,10 @@ const checkState = (req, res) => {
     });
 };
 
+
 module.exports = {
   create,
+    findStudentById,
   findStudentByUsername,
   checkState,
 };
