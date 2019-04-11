@@ -39,10 +39,10 @@ class Quiz extends Component {
         axios.post('/postQuiz', { choices: this.state.checkedChoices })
             .then(({ data }) => {
                 if(data.success){
-                  if(this.props.quizId==1){
+                  if(this.props.quizId === 1){
                     this.props.history.push('/result');
                   }
-                  else if(this.props.quizId==2){
+                  else if(this.props.quizId === 2){
                     this.props.history.push('/comparison');
                   }
                 } else {
