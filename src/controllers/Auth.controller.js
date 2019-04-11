@@ -7,15 +7,19 @@ const StudentController = require('./Student.controller');
 
 
 const hashStudentPassword = student => new Promise((resolve, reject) => {
-  bcrypt.hash(student.password, 10, (hashError, hashedPassword) => {
-    if (hashError) {
-      reject(hashError);
+    if(student.password.length >= 6){
+        bcrypt.hash(student.password, 10, (hashError, hashedPassword) => {
+            if (hashError) {
+                reject(hashError);
+            } else {
+                const newStudent = student;
+                newStudent.password = hashedPassword;
+                resolve(newStudent);
+            }
+        });
     } else {
-      const newStudent = student;
-      newStudent.password = hashedPassword;
-      resolve(newStudent);
+        reject(new Error('Password must be 6 characters!'));
     }
-  });
 });
 
 const generateIdCookie = ({ id }) => new Promise((resolve, reject) => {
