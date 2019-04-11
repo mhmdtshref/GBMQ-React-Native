@@ -18,7 +18,7 @@ const hashStudentPassword = student => new Promise((resolve, reject) => {
             }
         });
     } else {
-        reject(new Error('Password must be 6 characters!'));
+        reject(new Error('Password must be at least 6 characters!'));
     }
 });
 
