@@ -26,9 +26,6 @@ const Student = sequelize.define(
     password: {
       type: Sequelize.STRING,
       allowNull: false,
-      validate: {
-        len: { args: 6, msg: 'Password must be at least 6 characters' },
-      },
     },
     age: {
       type: Sequelize.INTEGER,
