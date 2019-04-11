@@ -3,11 +3,11 @@ import ChoicesList from "../ChoicesList";
 
 export const StyledText = styled.p`
     margin: auto 8vw;
-    text-align: center;
+    text-align: justify;
     font-size: 6vw;
-    font-weight: 600;
     color: #FEFFFF;
     font-family: 'Roboto', sans-serif;
+    min-height: 20vh;
     @media (min-width: 700px) {
     font-size: 30px;
   }
@@ -42,7 +42,6 @@ export const StyledSignText = styled.div`
     color: #FEFFFF;
     font-weight: 700;
 `;
-// 4vh 10vw 2vh 10vw
 export const StyledButton = styled.button`
     background: #38BEFD;
     border-radius: 20px;
