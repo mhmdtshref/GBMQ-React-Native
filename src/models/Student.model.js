@@ -8,21 +8,19 @@ const Student = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        fn(val) {
-          if (val === '') throw new Error('Please insert your username');
-        },
-        isUnique(value, next) {
-          Student.find({
-            where: {
-              username: value,
-            },
-          }).then((result) => {
-            if (result === null) {
-              return next();
-            }
-            return next(' Username already exist');
-          }).catch(err => next(err));
-        },
+          len: { args: 3, msg: 'Username should be at least 3 characters' },
+          isUnique: (value, next) => {
+              Student.find({
+                  where: {
+                      username: value,
+                  },
+              }).then((result) => {
+                  if (result === null) {
+                      return next();
+                  }
+                  return next(' Username already exist');
+              }).catch(err => next(err));
+              },
       },
     },
     password: {
@@ -35,28 +33,33 @@ const Student = sequelize.define(
     age: {
       type: Sequelize.INTEGER,
       allowNull: false,
+        validate: {
+          isInt: { args: true, msg: 'Age should be a integer number'},
+            min: { args: 14, msg: 'Minimum valid age is 14' },
+            max: { args: 18, msg: 'Maximum valid age is 18' },
+        }
     },
     gender: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
-      defaultValue: false,
       validate: {
-        isBoolean: true,
+        isBoolean: { args: true, msg: 'Gender must be a boolean value!'},
       },
     },
     english: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
-      defaultValue: false,
       validate: {
-        isBoolean: true,
+        isBoolean: { args: true, msg: 'English must be a boolean value'},
       },
     },
     postcode: {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        len: { args: 2, msg: 'Postcode must be at least 2 characters' },
+          is: { args: /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$/,
+          msg: 'Post code is not right'
+        },
       },
     },
   },
