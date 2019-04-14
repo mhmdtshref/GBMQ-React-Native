@@ -30,13 +30,13 @@ class Result extends Component {
       axios
           .get('/getResult')
           .then(({data})=>{
-              if (data.success & data.data.score>=0) {
+              if (data.success) {
                       this.setState({ score: data.data.score, percentage: (((data.data.score)/16)*100),rank: 0}, () => {
                           resolve(this.state.score,this.state.percentage);
                       });
               }
               else {
-                  reject(data.error)
+                  reject(new Error(data.error))
               }
           })
           .catch((axiosErr) => {
@@ -49,7 +49,14 @@ class Result extends Component {
   };
 
   componentDidMount() {
-    this.getResult();
+    this.getResult()
+    .then((result)=>{
+        return result;
+    })
+    .catch((err)=>{
+      alert(`Error: ${err.message}`);
+      this.props.history.push('/start');
+    })
   }
 
   render() {
