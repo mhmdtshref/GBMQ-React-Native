@@ -24,19 +24,8 @@ router.get('/quizQuestionsIds/:quizId', QuizController.getQuizQuestionsIds);
 router.post('/postQuiz', [StudentAuthMiddleware.checkStudentAuth], QuizController.postQuiz);
 
 router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultController);
-router.get('/getActivities', [ StudentAuthMiddleware.checkStudentAuth ], ActivityController.getActivities);
+router.get('/getActivities', [StudentAuthMiddleware.checkStudentAuth], ActivityController.getActivities);
 router.get('/getComparison', [StudentAuthMiddleware.checkStudentAuth], ComparisonController);
-
-router.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
-});
-
-/*
-TODO: Route to run the admin app:
-router.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
-});
-*/
 
 
 module.exports = router;
