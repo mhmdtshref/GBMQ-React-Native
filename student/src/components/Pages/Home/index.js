@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axios from "axios";
+import cookie from "react-cookies";
 import Activities from "../Activities";
 
 import {
@@ -14,6 +15,7 @@ import {
     SmallTitle,
     StyledHeader,
     StyledLoading,
+    StyledLogoutButton,
 } from "./index.style";
 import homeImg from "./home-img.png";
 
@@ -80,6 +82,11 @@ class Home extends Component {
       }
   };
 
+  onClickLogout = () => {
+      cookie.remove("id");
+      this.props.history.push("/login");
+  };
+
   componentDidMount() {
       this.redirectByState()
           .catch((err) => { alert(`Loading Error: ${err.message}`) })
@@ -113,6 +120,7 @@ class Home extends Component {
                 {this.stateremainingDays <= 0 ?
                     (<StyledQuizButton onClick = {this.quiz2ButtonEvent} > Go to Second Quiz </StyledQuizButton>)
                     : (<DisabledStyledQuizButton onClick={this.quiz2ButtonEvent}> { this.state.Quiz2ButtonText } </DisabledStyledQuizButton>)}
+                <StyledLogoutButton onClick={this.onClickLogout}>Logout</StyledLogoutButton>
             </StyledHome>
             { this.state.activitiesPopup ? <Activities/> : null}
         </StyledContent>
