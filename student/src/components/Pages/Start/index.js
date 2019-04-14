@@ -7,6 +7,7 @@ import {
   StyledImg,
   StyledBtn
 } from "./index.style";
+import cookie from "react-cookies";
 import bg from "./start-bg.png";
 import startImg from "./start-img.png";
 
@@ -17,9 +18,17 @@ class Start extends Component {
    }
 
 
+   onClickStart = () => {
+       const { history } = this.props;
+       this.props.onStartAction(1,history);
+   };
+
+    onClickLogout = () => {
+       cookie.remove("id");
+       this.props.history.push("/login");
+    };
 
   render() {
-       const { history } = this.props;
     return (
       <React.Fragment>
         <StyledPage>
@@ -27,7 +36,8 @@ class Start extends Component {
           <Title>Great British Money</Title>
           <Title1>Quiz</Title1>
           <StyledImg src={startImg} />
-          <StyledBtn onClick = {() => {this.props.onStartAction(1,history);}}> Start first Quiz </StyledBtn>
+          <StyledBtn onClick = {this.onClickStart}> Start first Quiz </StyledBtn>
+            <StyledBtn onClick={this.onClickLogout}>Logout</StyledBtn>
         </StyledPage>
       </React.Fragment>
     );

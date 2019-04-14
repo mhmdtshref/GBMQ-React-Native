@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axios from "axios";
+import cookie from "react-cookies";
 import {
   StyledContent,
   CongratsImg,
@@ -45,7 +46,7 @@ class Result extends Component {
                 rank2:0,
                 scoreImprovement: (Mark2*100)-(Mark1*100),
                 rankImprovement: 0,
-              }
+              };
               resolve(results);
             }
         else {
@@ -56,7 +57,7 @@ class Result extends Component {
           reject(axiosErr);
       })
   });
-}
+};
   setComparisonResult = results => {
     return new Promise((resolve, reject) => {
       this.setState({ results }, () => {
@@ -69,11 +70,16 @@ class Result extends Component {
     });
   };
 
+  onClickLogout = () => {
+      cookie.remove('id');
+      this.props.history.push('/');
+  };
+
   componentDidMount() {
     this.getComparisonResult()
       .then(this.setComparisonResult)
       .catch((err) => {
-        alert("Loading results error: ", err.message);
+        alert(`Loading results error: ${err.message}`);
       });
   }
 
@@ -108,7 +114,7 @@ class Result extends Component {
               <p>{this.state.results.rankImprovement}</p>
             </Column>
           </Results>
-          <StyledButton>Home</StyledButton>
+          <StyledButton onClick={this.onClickLogout}>Logout</StyledButton>
         </StyledContent>
       </React.Fragment>
     );

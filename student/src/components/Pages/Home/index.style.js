@@ -103,6 +103,24 @@ export const DisabledStyledQuizButton = styled.button`
   cursor: not-allowed;
 `;
 
+export const StyledLogoutButton = styled.button`
+  border-radius: 20px;
+  border: none;
+  display: block;
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
+  background: #38befd;
+  width: 45vw;
+  height: 35px;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  position: relative;
+`;
+
 export const StyledLoading = styled.h1`
     color: #292f33;
     font-weight: 800;
