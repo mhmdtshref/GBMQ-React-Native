@@ -58,4 +58,5 @@ export const StyledBtn = styled.button`
   font-weight: bold;
   position: relative;
   z-index: 15;
+  margin-bottom: 11vh;
 `;
