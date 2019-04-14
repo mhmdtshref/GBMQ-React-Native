@@ -67,15 +67,20 @@ class Quiz extends Component {
 
 
     render(){
-        if((this.state.questionsIds).length === 0){
-            return <h2>Loading...</h2>;
-        } else {
-            return (
+          if (this.props.quizId) {
+            if((this.state.questionsIds).length === 0){
+              return <h2>Loading...</h2>;
+            } else {
+              return (
                 <React.Fragment>
-                    <Question id={(this.state.questionsIds)[this.state.questionCounter]} quizQuestionsNumber={this.state.questionsIds.length} questionNumber={this.state.questionCounter+1} buttonValue={this.state.buttonValue} onClickButton={this.onClickNext} />
+                <Question id={(this.state.questionsIds)[this.state.questionCounter]} quizQuestionsNumber={this.state.questionsIds.length} questionNumber={this.state.questionCounter+1} buttonValue={this.state.buttonValue} onClickButton={this.onClickNext} />
                 </React.Fragment>
-            );
-        }
+              );
+            }
+          } else {
+            this.props.history.push('/')
+            return (null);
+          }
     }
 
 }

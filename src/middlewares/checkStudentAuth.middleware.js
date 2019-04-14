@@ -9,9 +9,7 @@ const checkStudentAuth = (req, res, next) => {
   if (!hashedId) {
     res.json({
       success: false,
-      data: {
-        error: 'Unauthenticated',
-      },
+      error: 'Unauthenticated',
     });
   } else {
     jwt.verify(hashedId, SECRET, (verifyError, decoded) => {

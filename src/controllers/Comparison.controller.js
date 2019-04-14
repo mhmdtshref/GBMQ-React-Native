@@ -7,10 +7,18 @@ const getStdFinalResultById = (req, res) => {
 
   Quiz1Mark.findOne({ where: { stdid: studentId }, attributes: ['mark'] })
     .then((result) => {
-      Quiz2Mark.findOne({ where: { stdid: studentId }, attributes: ['mark'] })
-        .then((result2) => {
-          res.json({ success: true, data: { score: result.mark, score2: result2.mark } });
-        });
+      if (!result) {
+        res.json({ success: false, error: 'Quizzes are not completed' });
+      } else {
+        Quiz2Mark.findOne({ where: { stdid: studentId }, attributes: ['mark'] })
+          .then((result2) => {
+            if (!result2) {
+              res.json({ success: false, error: 'Quizzes are not completed' });
+            } else {
+              res.json({ success: true, data: { score: result.mark, score2: result2.mark } });
+            }
+          });
+      }
     })
     .catch((err) => {
       res.json({ success: false, error: err.message });
