@@ -38,6 +38,10 @@ const postQuestion = (req, res) => {
     });
 };
 
+const getStatisticsFile = (req, res) => {
+
+};
+
 module.exports = {
   createQuestion,
   postQuestion,
