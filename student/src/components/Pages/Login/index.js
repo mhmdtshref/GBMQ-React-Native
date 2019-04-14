@@ -8,9 +8,14 @@ import {
   StyledBk,
   StyledSpan,
   StyledLink,
-  StyledDiv
+  StyledCenteredDiv,
+  LastStyledCenteredDiv,
+  StyledB,
 } from "./index.style";
-import bg from "./login-bg.png";
+import bg from "./bg.png";
+import b from "./b.png";
+
+
 
 class Login extends Component {
 
@@ -60,18 +65,21 @@ class Login extends Component {
       <React.Fragment>
         <StyledPage>
           <StyledBk src={bg} />
-          <Title>Great British Money</Title>
-          <Title1>Quiz</Title1>
+            <StyledCenteredDiv>
+                <Title>Great British Money</Title>
+                <Title1>Quiz</Title1>
+            </StyledCenteredDiv>
+          <StyledB src={b} />
           <MainForm
             fields={fields}
             action={this.onSubmitAction}
             operationName="Login"
             initialValues={initialValues}
           />
-          <StyledDiv>
+          <LastStyledCenteredDiv>
             <StyledSpan>New User ?</StyledSpan>
             <StyledLink to="/signup"> Signup </StyledLink>
-          </StyledDiv>
+          </LastStyledCenteredDiv>
         </StyledPage>
       </React.Fragment>
     );

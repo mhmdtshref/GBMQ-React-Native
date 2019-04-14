@@ -6,6 +6,10 @@ export const StyledLabel = styled.label`
     vertical-align: super;
     font-family: 'Roboto', sans-serif;
     margin-left: 2vw;
+    float: left;
+    width: 65vw;
+    margin-bottom: 3vh;
+    margin-top: 1vh;
 `;
 
 export const StyledInput = styled.input`
@@ -13,6 +17,7 @@ export const StyledInput = styled.input`
     height: 6vw;
     max-width: 30px;
     max-height: 30px
+    float: left;
 `;
 
 export const StyledChoice = styled.div`

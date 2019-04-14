@@ -7,12 +7,7 @@ export default styled.button`
   height: 35px;
   color: white;
   border: none;
-  margin-top: 2vh;
   margin-bottom: 3vh;
-  margin-left: 15px;
-  position: relative;
-  z-index: 15;
   font-weight: bold;
   font-size: 14px;
-  text-align: center;
 `;
