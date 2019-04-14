@@ -35,7 +35,7 @@ class Result extends Component {
       axios
       .get('/getComparison')
       .then(({data}) =>{
-        if (data.success & data.data.score>=0 & data.data.score2>=0) {
+        if (data.success) {
               const Mark1 = (data.data.score/16).toFixed(2);
               const Mark2 = (data.data.score2/15).toFixed(2);
 
@@ -50,7 +50,7 @@ class Result extends Component {
               resolve(results);
             }
         else {
-              reject(new Error(data.data.error))
+              reject(new Error(data.error))
           }
       })
       .catch((axiosErr) => {
@@ -79,9 +79,8 @@ class Result extends Component {
     this.getComparisonResult()
       .then(this.setComparisonResult)
       .catch((err) => {
-        if (err.message.includes("Unauthenticated")) {
-            this.props.history.push('/login')
-        }
+        alert(`Error: ${err.message}`);
+        this.props.history.push('/');
       });
   }
 
