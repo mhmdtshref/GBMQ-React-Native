@@ -49,7 +49,7 @@ class Result extends Component {
               resolve(results);
             }
         else {
-              reject(data.error)
+              reject(new Error(data.data.error))
           }
       })
       .catch((axiosErr) => {
@@ -73,7 +73,9 @@ class Result extends Component {
     this.getComparisonResult()
       .then(this.setComparisonResult)
       .catch((err) => {
-        alert("Loading results error: ", err.message);
+        if (err.message.includes("Unauthenticated")) {
+            this.props.history.push('/login')
+        }
       });
   }
 
