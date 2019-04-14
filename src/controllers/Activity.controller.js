@@ -23,7 +23,7 @@ const getActivitiesByDate = (quiz1Mark) => new Promise((resolve, reject) => {
                 const now = moment();
                 const end = moment(quiz1Mark.dataValues.date.toUTCString());
                 const durationAsDays = (moment.duration(now.diff(end))).asDays();
-                return durationAsDays >= activity.day;
+                return durationAsDays >= activity.day-1;
             });
             resolve({ activities: filteredActivities, fullCount: activitiesNumber});
         })
