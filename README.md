@@ -1,4 +1,4 @@
-# Great British Money Quiz
+# [Great British Money Quiz](https://gbmq.herokuapp.com/https://gbmq.herokuapp.com/)
 It's an app to test kids financial knowledgement level before give them 5-days training. Then, test thair level again. Testing their level is done by multiple choice quizzes.
 
 # Functional Requirements
