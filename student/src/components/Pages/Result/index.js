@@ -55,7 +55,7 @@ class Result extends Component {
     })
     .catch((err)=>{
       alert(`Error: ${err.message}`);
-      this.props.history.push('/start');
+      this.props.history.push('/');
     })
   }
 
