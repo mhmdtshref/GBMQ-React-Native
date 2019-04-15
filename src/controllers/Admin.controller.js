@@ -46,7 +46,7 @@ const getStatisticsFile = (req, res) => {
       });
       res.set({
         'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        'Content-Disposition': 'attachment; filename=logs.xlsx',
+        'Content-Disposition': 'attachment; filename=student-data.xlsx',
       });
       workbook.xlsx.write(res).then(() => {
         res.end();
