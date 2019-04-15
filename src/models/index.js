@@ -7,9 +7,10 @@ const Quiz1Mark = require('./Quiz1Mark.model');
 const Choice = require('./Choice.model');
 const Quiz2Mark = require('./Quiz2Mark.model');
 const Activity = require('./Activity.model');
+const StudentsView = require('./StudentsView.model');
 
 Question.hasMany(Choice);
 
 module.exports = {
-  Question, Student, Choice, StudentsChoice, Admin, Quiz1Mark, Quiz2Mark, Activity, sequelize,
+  Question, Student, Choice, StudentsChoice, Admin, Quiz1Mark, Quiz2Mark, Activity, StudentsView, sequelize,
 };
