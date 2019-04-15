@@ -1,91 +1,39 @@
 import React, { Component } from "react";
-import axios from 'axios';
 import {
   Title,
-  Title1,
+  StyledForm,
+  StyledField,
+  StyledBg,
+  StyledLabel,
   StyledPage,
-  StyledBk,
-  StyledCenteredDiv,
+  Button
 } from "./index.style";
 import bg from "./bg.png";
 
-
-class AdminLogin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
-
-  onSubmitAction = (values) => new Promise ((resolve, reject) => {
-    const { username, password } = values;
-    const { history } = this.props;
-    axios
-      .post("/admin/login", { username, password })
-      .then(({ data }) => {
-        if (data.success) {
-          history.push("/");
-          resolve();
-        } else {
-          reject(new Error('Username and password is not matched'));
-        }
-      })
-      .catch(error => {
-        this.setState({ error: error.message });
-        reject();
-      });
-  });
-
-  PasswordhandleChange = ({ target: { name, value } }) => {
-   this.setState({ username: { ...this.state.username, [name]: value } });
-  };
-
- UsernamehandleChange = ({ target: { name, value } }) => {
-  this.setState({ password: { ...this.state.username, [name]: value } });
-  };
-
-  handleSubmitForm = event => {
-    event.preventDefault();
-  };
-
-
+class Login extends Component {
   render() {
-  return (
-    <React.Fragment>
-      <StyledPage>
-        <StyledBk src={bg} />
-          <StyledCenteredDiv>
-              <Title>GBMQ Login</Title>
-          </StyledCenteredDiv>
-          <form onSubmit={this.handleSubmitForm}>
-            <Label>USERNAME</Label>
-            <input
-              className="login-input"
+    return (
+      <React.Fragment>
+          <StyledBg src={bg} />
+          <StyledForm>
+            <Title>GBMQ Login</Title>
+            <StyledLabel>Admin</StyledLabel>
+            <StyledField
               type="text"
-              name="username"
-              value={this.state.username}
-              placeholder="username"
-              onChange={this.handleChange}
+              name="admin"
+              placeholder="Enter your name"
             />
-            <Label>PASSWORD</Label>
-            <input
-              className="login-input"
+            <StyledLabel>Password</StyledLabel>
+
+             <StyledField
               type="password"
               name="password"
-              placeholder="password"
-              value={this.state.password}
-              onChange={this.handleChange}
+              placeholder="Enter your password"
             />
-            <button className="btn1" onClick={this.onSubmitAction}>
-              Log in
-            </button>
-          </form>
-      </StyledPage>
-    </React.Fragment>
-  );
+            <Button>Login</Button>
+          </StyledForm>
+      </React.Fragment>
+    );
   }
 }
-
-export default AdminLogin;
+export default Login;
