@@ -1,5 +1,8 @@
 const excel = require('exceljs');
-const { Question, Choice, StudentsView } = require('../models');
+const {
+  Question, Choice, StudentsView, Admin,
+} = require('../models');
+
 
 const createQuestion = (question) => {
   const {
@@ -56,8 +59,24 @@ const getStatisticsFile = (req, res) => {
     });
 };
 
+const findAdmin = username => new Promise((resolve, reject) => {
+  Admin.findOne({
+    where: { username },
+    raw: true,
+  }).then((admin) => {
+    if (!admin) {
+      reject(new Error('User Not Found!'));
+    } else {
+      resolve(admin);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
 module.exports = {
   createQuestion,
   postQuestion,
   getStatisticsFile,
+  findAdmin,
 };
