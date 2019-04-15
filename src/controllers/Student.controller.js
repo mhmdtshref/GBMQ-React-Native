@@ -64,7 +64,7 @@ const findStudentById = studentId => new Promise((resolve, reject) => {
 });
 
 const checkQuiz2 = student => new Promise((resolve, reject) => {
-  Quiz2Mark.findOne({ where: { stdid: student.id }, attributes: ['stdid', 'mark', 'username'] })
+  Quiz2Mark.findOne({ where: { stdId: student.id }, attributes: ['stdId', 'mark', 'username'] })
     .then((studentMark) => {
       if (!studentMark) {
         resolve(student);
@@ -78,7 +78,7 @@ const checkQuiz2 = student => new Promise((resolve, reject) => {
 });
 
 const checkQuiz1 = student => new Promise((resolve, reject) => {
-  Quiz1Mark.findOne({ where: { stdid: student.id }, attributes: ['stdid', 'mark', 'username'] })
+  Quiz1Mark.findOne({ where: { stdId: student.id }, attributes: ['stdId', 'mark', 'username'] })
     .then((studentMark) => {
       if (!studentMark) {
         resolve();
@@ -91,17 +91,17 @@ const checkQuiz1 = student => new Promise((resolve, reject) => {
     });
 });
 
-const quiz2RemainingDays = (quiz1Mark) => new Promise((resolve, reject) => {
-    Activity.count()
-        .then((activitiesCount) => {
-            const now = moment();
-            const end = moment(quiz1Mark.dataValues.date.toUTCString());
-            const durationAsDays = (moment.duration(now.diff(end))).asDays();
-            resolve(activitiesCount - durationAsDays);
-        })
-        .catch((err) => {
-            reject(err);
-        })
+const quiz2RemainingDays = quiz1Mark => new Promise((resolve, reject) => {
+  Activity.count()
+    .then((activitiesCount) => {
+      const now = moment();
+      const end = moment(quiz1Mark.dataValues.date.toUTCString());
+      const durationAsDays = (moment.duration(now.diff(end))).asDays();
+      resolve(activitiesCount - durationAsDays);
+    })
+    .catch((err) => {
+      reject(err);
+    });
 });
 
 const checkState = (req, res) => {
@@ -122,7 +122,7 @@ const checkState = (req, res) => {
           break;
         case '2':
           QuizController.getStudentQuiz1MarkById(req.studentId.id)
-              .then(quiz2RemainingDays)
+            .then(quiz2RemainingDays)
             .then((remainingDays) => {
               res.json({ success: true, data: { studentState: 2, remainingDays: Math.ceil(remainingDays) } });
             })
@@ -142,7 +142,7 @@ const checkState = (req, res) => {
 
 module.exports = {
   create,
-    findStudentById,
+  findStudentById,
   findStudentByUsername,
   checkState,
 };
