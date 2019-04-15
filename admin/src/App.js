@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <Router>
       <div className="App">
-        <Route path='/admin/login' component={AdminLogin}/>
+        <Route path='/adminLogin' component={AdminLogin}/>
       </div>
       </Router>
     );
