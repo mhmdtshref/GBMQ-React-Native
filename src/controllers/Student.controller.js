@@ -64,7 +64,7 @@ const findStudentById = studentId => new Promise((resolve, reject) => {
 });
 
 const checkQuiz2 = student => new Promise((resolve, reject) => {
-  Quiz2Mark.findOne({ where: { stdId: student.id }, attributes: ['stdId', 'mark', 'username'] })
+  Quiz2Mark.findOne({ where: { stdid: student.id }, attributes: ['stdid', 'mark', 'username'] })
     .then((studentMark) => {
       if (!studentMark) {
         resolve(student);
@@ -78,7 +78,7 @@ const checkQuiz2 = student => new Promise((resolve, reject) => {
 });
 
 const checkQuiz1 = student => new Promise((resolve, reject) => {
-  Quiz1Mark.findOne({ where: { stdId: student.id }, attributes: ['stdId', 'mark', 'username'] })
+  Quiz1Mark.findOne({ where: { stdid: student.id }, attributes: ['stdid', 'mark', 'username'] })
     .then((studentMark) => {
       if (!studentMark) {
         resolve();
