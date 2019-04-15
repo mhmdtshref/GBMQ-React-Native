@@ -27,5 +27,17 @@ router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultControl
 router.get('/getActivities', [StudentAuthMiddleware.checkStudentAuth], ActivityController.getActivities);
 router.get('/getComparison', [StudentAuthMiddleware.checkStudentAuth], ComparisonController);
 
+router.get('/getStatisticsFile', AdminController.getStatisticsFile);
+
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
+});
+
+/*
+TODO: Route to run the admin app:
+router.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
+});
+*/
 
 module.exports = router;

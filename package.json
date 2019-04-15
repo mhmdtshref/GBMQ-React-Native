@@ -38,6 +38,7 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
     "env2": "^2.2.2",
+    "exceljs": "^1.9.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
