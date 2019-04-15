@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
+import {Route, BrowserRouter as Router} from 'react-router-dom';
+import AdminLogin from './components/AdminLogin';
+
 
 class App extends Component {
   render() {
     return (
+      <Router>
       <div className="App">
-        <header className="App-header">
-          <h1> Admin App</h1>
-        </header>
+        <Route path='/admin/login' component={AdminLogin}/>
       </div>
+      </Router>
     );
   }
 }
