@@ -46,7 +46,7 @@ class Signup extends Component {
             { type: "password", name:"password", placeholder: "Enter password"},
             { type:"radio", name: "gender", text:"What is your gender ?", options: GenderOptions},
             { type:"radio", name: "english", text:"Is English your first language ?", options: EnglishOptions},
-            { type: "select", name: "age", component: "select", options: ageOptions},
+            { type: "select", title: "Age", name: "age", component: "select", options: ageOptions},
             { type: "text", name:"postcode", placeholder: "Postal Code"},
               ];
         return (
