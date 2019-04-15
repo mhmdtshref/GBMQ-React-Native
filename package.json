@@ -12,7 +12,7 @@
     "start": "node ./src/server.js",
     "eslint": "eslint ./src/",
     "eslint:fix": "eslint --fix ./src/",
-    "heroku-postbuild": "cd student && npm install && npm run build"
+    "heroku-postbuild": "cd student && npm install && npm run build && cd .. && cd admin && npm install && npm run build"
   },
   "repository": {
     "type": "git",
