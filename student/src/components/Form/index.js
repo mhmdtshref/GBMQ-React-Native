@@ -9,7 +9,8 @@ import {
   StyledRadioLabel,
   StyledRadioInput,
   StyledRadioChoice,
-  StyledTitle
+  StyledTitle,
+  StyledSelectLabel,
 } from "./index.style";
 
 class MainForm extends Component {
@@ -81,6 +82,7 @@ class MainForm extends Component {
         case "select":
           return (
             <StyledLabel>
+                <StyledSelectLabel>{f.title}</StyledSelectLabel>
               <StyledField type="select" component={f.component} name={f.name}>
                 {this.getSelectOptions(f.options)}
               </StyledField>

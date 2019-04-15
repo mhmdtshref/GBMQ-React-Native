@@ -69,3 +69,9 @@ export const StyledTitle = styled.p`
   font-size: 4vw;
   font-family: 'Roboto', sans-serif;
 `;
+
+export const StyledSelectLabel = styled.p`
+    margin-top: 1vh;
+    margin-bottom: 0.8vh;
+    margin-left: 3vw;
+`;
