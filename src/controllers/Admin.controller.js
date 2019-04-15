@@ -1,4 +1,4 @@
-const { Question, Choice } = require('../models');
+const { Question, Choice, StudentsView } = require('../models');
 
 const createQuestion = (question) => {
   const {
@@ -39,10 +39,14 @@ const postQuestion = (req, res) => {
 };
 
 const getStatisticsFile = (req, res) => {
-
+    StudentsView.findAll({ attributes: ['username', 'age', 'gender', 'postcode', 'english'] })
+        .then((students) => {
+            console.log(students.map(student => student.dataValues));
+        })
 };
 
 module.exports = {
   createQuestion,
   postQuestion,
+  getStatisticsFile,
 };
