@@ -29,6 +29,7 @@ router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultControl
 router.get('/getActivities', [StudentAuthMiddleware.checkStudentAuth], ActivityController.getActivities);
 router.get('/getComparison', [StudentAuthMiddleware.checkStudentAuth], ComparisonController);
 
+router.get('/admin/checkAuth', AdminController.checkAuth);
 router.get('/getStatisticsFile', [AdminAuthMiddleware.checkAdminAuth], AdminController.getStatisticsFile);
 
 router.get('*', (req, res) => {
