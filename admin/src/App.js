@@ -4,9 +4,21 @@ import AdminLogin from './components/AdminLogin';
 
 
 class App extends Component {
-  render() {
-    return <AdminLogin/>
-  }
+
+    constructor(props){
+        super(props);
+        this.state = {
+            loginState: null,
+        };
+    }
+
+    setLoginState = (loginState) => {
+        this.setState({ loginState }, console.log("State:: ", this.state));
+    };
+
+    render() {
+        return <AdminLogin setLoginState={this.setLoginState} />;
+    }
 }
 
 export default App;
