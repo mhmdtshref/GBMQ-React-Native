@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('env2')('config.env');
 
-const { SECRET } = process.env;
+const { SECRET, ADMINSECRET } = process.env;
 const StudentController = require('./Student.controller');
 const AdminController = require('./Admin.controller');
 
@@ -25,6 +25,16 @@ const hashStudentPassword = student => new Promise((resolve, reject) => {
 
 const generateIdCookie = ({ id }) => new Promise((resolve, reject) => {
   jwt.sign({ id }, SECRET, (signErr, token) => {
+    if (signErr || !token) {
+      reject(signErr || new Error('No token has generated!'));
+    } else {
+      resolve(token);
+    }
+  });
+});
+
+const generateAdminIdCookie = ({ id }) => new Promise((resolve, reject) => {
+  jwt.sign({ id }, ADMINSECRET, (signErr, token) => {
     if (signErr || !token) {
       reject(signErr || new Error('No token has generated!'));
     } else {
@@ -75,7 +85,7 @@ const adminLogin = (req, res) => {
   const { username, password } = req.body;
   AdminController.findAdmin(username)
     .then(admin => matchPasswords(admin, password))
-    .then(generateIdCookie)
+    .then(generateAdminIdCookie)
     .then(token => res.cookie('id', token, { maxAge: 360000000 }).json({ success: true }))
     .catch((err) => {
       res.json({ success: false, error: err.message });
