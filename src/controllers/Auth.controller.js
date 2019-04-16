@@ -86,7 +86,7 @@ const adminLogin = (req, res) => {
   AdminController.findAdmin(username)
     .then(admin => matchPasswords(admin, password))
     .then(generateAdminIdCookie)
-    .then(token => res.cookie('id', token, { maxAge: 360000000 }).json({ success: true }))
+    .then(token => { res.cookie('id', token, { maxAge: 360000000 }).json({ success: true })})
     .catch((err) => {
       res.json({ success: false, error: err.message });
     });

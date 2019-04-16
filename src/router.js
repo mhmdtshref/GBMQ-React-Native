@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.post('/signup', AuthController.signup);
 router.post('/login', AuthController.login);
-router.post('/adminLogin', AuthController.adminLogin);
+router.post('/admin/login', AuthController.adminLogin);
 router.post('/postQuestion', AdminController.postQuestion);
 
 router.get('/checkState', StudentController.checkState);
@@ -29,6 +29,7 @@ router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultControl
 router.get('/getActivities', [StudentAuthMiddleware.checkStudentAuth], ActivityController.getActivities);
 router.get('/getComparison', [StudentAuthMiddleware.checkStudentAuth], ComparisonController);
 
+router.get('/admin/checkAuth', AdminController.checkAuth);
 router.get('/getStatisticsFile', [AdminAuthMiddleware.checkAdminAuth], AdminController.getStatisticsFile);
 
 router.get('*', (req, res) => {
