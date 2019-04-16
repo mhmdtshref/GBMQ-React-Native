@@ -2,38 +2,40 @@ import React, { Component } from "react";
 import {
   Title,
   StyledForm,
-  StyledField,
   StyledBg,
-  StyledLabel,
-  StyledPage,
-  Button
+  StyledButton
 } from "./index.style";
+import Field from "../Field";
 import bg from "./bg.png";
 
 class Login extends Component {
-  render() {
-    return (
-      <React.Fragment>
-          <StyledBg src={bg} />
-          <StyledForm>
-            <Title>GBMQ Login</Title>
-            <StyledLabel>Admin</StyledLabel>
-            <StyledField
-              type="text"
-              name="admin"
-              placeholder="Enter your name"
-            />
-            <StyledLabel>Password</StyledLabel>
 
-             <StyledField
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-            />
-            <Button>Login</Button>
+    constructor(props){
+        super(props);
+        this.state = {
+            values: {},
+        };
+    };
+
+    onInputChange = (name, value) => {
+        this.setState((prevState) => ({ values: { ...prevState.values, [name]: value } }));
+    };
+
+    onSubmitAction = (event) => {
+        event.preventDefault();
+        console.log("VALUES: ", this.state.values);
+    };
+
+  render() {
+      return <React.Fragment>
+          <StyledBg src={bg}/>
+          <Title>GBMQ Login</Title>
+          <StyledForm>
+              <Field type="text" name="username" placeholder="Enter Username..." label="Username" onChange={this.onInputChange} />
+              <Field type="password" name="password" placeholder="Enter Password..." label="Password" onChange={this.onInputChange} />
+              <StyledButton onClick={this.onSubmitAction}>Login</StyledButton>
           </StyledForm>
-      </React.Fragment>
-    );
+      </React.Fragment>;
   }
 }
 export default Login;
