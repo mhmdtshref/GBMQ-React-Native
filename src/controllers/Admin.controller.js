@@ -1,7 +1,9 @@
+const jwt = require('jsonwebtoken');
 const excel = require('exceljs');
 const {
   Question, Choice, StudentsView, Admin,
 } = require('../models');
+require('env2')('config.env');
 
 
 const createQuestion = (question) => {
@@ -74,9 +76,33 @@ const findAdmin = username => new Promise((resolve, reject) => {
   });
 });
 
+const checkAuth = (req, res) => {
+    const { ADMINSECRET } = process.env;
+    const hashedId = req.cookies.id;
+
+    if (!hashedId) {
+        res.json({
+            success: false,
+            error: 'Unauthenticated',
+        });
+    } else {
+        jwt.verify(hashedId, ADMINSECRET, (verifyError, decoded) => {
+            if (verifyError || !decoded) {
+                res.json({
+                    success: false,
+                    error: verifyError ? verifyError.message : 'Unauthenticated',
+                });
+            } else {
+                res.json({ success: true });
+            }
+        });
+    }
+};
+
 module.exports = {
   createQuestion,
   postQuestion,
   getStatisticsFile,
   findAdmin,
+  checkAuth
 };
