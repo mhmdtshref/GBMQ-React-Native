@@ -15,10 +15,8 @@ const checkAdminAuth = (req, res, next) => {
     jwt.verify(hashedId, ADMINSECRET, (verifyError, decoded) => {
       if (verifyError || !decoded) {
         res.json({
-          success: true,
-          data: {
-            Logged: false,
-          },
+          success: false,
+          error: 'There is an problem',
         });
       } else {
         next();
