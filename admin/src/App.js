@@ -37,7 +37,7 @@ class App extends Component {
                 return <AdminLogin setLoginState={this.setLoginState}/>;
             case 2:
             default:
-                return <DownloadSheet/>;
+                return <DownloadSheet setLoginState={this.setLoginState}/>;
         }
     }
 }
