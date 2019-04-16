@@ -8,4 +8,7 @@ sequelize.sync().then(() => {
   // eslint-disable-next-line no-console
     console.log(`The Server Is Up And Running On http://localhost:${app.get('PORT')}`);
   });
+}).catch((err) => {
+    // eslint-disable-next-line no-console
+    console.log("DB SYNC ERROR: ", err);
 });
