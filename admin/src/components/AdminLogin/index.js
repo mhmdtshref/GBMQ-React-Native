@@ -28,9 +28,9 @@ class Login extends Component {
         axios.post('/admin/login', { username, password })
             .then(({ data }) => {
                 if(!data.success){
-                    this.props.setLoginState(false);
+                    this.props.setLoginState(1);
                 } else {
-                    this.props.setLoginState(true);
+                    this.props.setLoginState(2);
                 }
             })
     };
