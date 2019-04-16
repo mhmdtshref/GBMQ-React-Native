@@ -6,6 +6,7 @@ import {
   StyledButton
 } from "./index.style";
 import Field from "../Field";
+import axios from "axios";
 import bg from "./bg.png";
 
 class Login extends Component {
@@ -23,7 +24,15 @@ class Login extends Component {
 
     onSubmitAction = (event) => {
         event.preventDefault();
-        console.log("VALUES: ", this.state.values);
+        const { username, password } = this.state.values;
+        axios.post('/admin/login', { username, password })
+            .then(({ data }) => {
+                if(!data.success){
+                    this.props.setLoginState(false);
+                } else {
+                    this.props.setLoginState(true);
+                }
+            })
     };
 
   render() {
