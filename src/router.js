@@ -6,6 +6,7 @@ const StudentController = require('./controllers/Student.controller');
 const QuestionController = require('./controllers/Question.controller');
 const QuizController = require('./controllers/Quiz.controller');
 const StudentAuthMiddleware = require('./middlewares/checkStudentAuth.middleware');
+const AdminAuthMiddleware = require('./middlewares/checkAdminAuth.middleware');
 const ResultController = require('./controllers/Result.controller');
 const ActivityController = require('./controllers/Activity.controller');
 const ComparisonController = require('./controllers/Comparison.controller');
@@ -28,7 +29,7 @@ router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultControl
 router.get('/getActivities', [StudentAuthMiddleware.checkStudentAuth], ActivityController.getActivities);
 router.get('/getComparison', [StudentAuthMiddleware.checkStudentAuth], ComparisonController);
 
-router.get('/getStatisticsFile', AdminController.getStatisticsFile);
+router.get('/getStatisticsFile', [AdminAuthMiddleware.checkAdminAuth], AdminController.getStatisticsFile);
 
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
