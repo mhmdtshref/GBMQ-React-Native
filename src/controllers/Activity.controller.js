@@ -32,4 +32,4 @@ const getActivitiesByDate = (quiz1Mark) => new Promise((resolve, reject) => {
         })
 });
 
-module.exports = { getActivities };
+module.exports = { getActivities, getActivitiesByDate };
