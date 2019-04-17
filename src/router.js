@@ -11,7 +11,7 @@ const ResultController = require('./controllers/Result.controller');
 const ActivityController = require('./controllers/Activity.controller');
 const ComparisonController = require('./controllers/Comparison.controller');
 const checkQuiz2Availability = require('./middlewares/checkQ1Availability.middleware');
-// const validations = require('./validations');
+const quizChoicesValidation = require('./validations/quizChoices.validation');
 
 const router = express.Router();
 
@@ -23,8 +23,8 @@ router.post('/postQuestion', AdminController.postQuestion);
 router.get('/checkState', StudentController.checkState);
 router.get('/getQuestion/:questionId', QuestionController.getQuestionById);
 
-router.get('/quizQuestionsIds/:quizId', QuizController.getQuizQuestionsIds);
-router.post('/postQuiz/:quizId', [StudentAuthMiddleware.checkStudentAuth, checkQuiz2Availability], QuizController.postQuiz);
+router.get('/quizQuestionsIds/:quizId',[StudentAuthMiddleware.checkStudentAuth, checkQuiz2Availability] ,QuizController.getQuizQuestionsIds);
+router.post('/postQuiz/:quizId', [StudentAuthMiddleware.checkStudentAuth, checkQuiz2Availability, quizChoicesValidation], QuizController.postQuiz);
 
 router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultController);
 router.get('/getActivities', [StudentAuthMiddleware.checkStudentAuth], ActivityController.getActivities);
@@ -36,6 +36,7 @@ router.get('/getStatisticsFile', [AdminAuthMiddleware.checkAdminAuth], AdminCont
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'student', 'build', 'index.html'));
 });
+
 
 /*
 TODO: Route to run the admin app:
