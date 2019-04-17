@@ -36,7 +36,7 @@ class Quiz extends Component {
     }
 
     postQuiz = () => {
-        axios.post('/postQuiz', { choices: this.state.checkedChoices })
+        axios.post(`/postQuiz/${this.props.quizId}`, { choices: this.state.checkedChoices })
             .then(({ data }) => {
                 if(data.success){
                   if(this.props.quizId === 1){
