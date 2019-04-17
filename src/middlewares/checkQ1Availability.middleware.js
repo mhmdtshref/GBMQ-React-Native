@@ -21,11 +21,9 @@ const checkQ2AvailableDays = (studentId) => new Promise((resolve, reject) => {
 
 const checkQ1Availability = (req, res, next) => {
     const { quizId } = req.params;
-    console.log(typeof  quizId);
     if(quizId === String(1)){
         Quiz1Mark.find({ where: { stdid: req.studentId }, attributes: ['stdid', 'date', 'mark'] })
             .then((student) => {
-                console.log("I'm HERE!!!");
                 if(!student){
                     next();
                 } else {
