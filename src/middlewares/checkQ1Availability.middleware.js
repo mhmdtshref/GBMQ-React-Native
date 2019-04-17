@@ -32,7 +32,7 @@ const checkQ1Availability = (req, res, next) => {
                     res.json({ success: false, error: 'Student already did quiz-1' });
                 }
             });
-    } else {
+    } else if(quizId === String(2)){
         Quiz2Mark.find({ where: { stdid: req.studentId }, attributes: ['stdid', 'date', 'mark'] })
             .then((student) => {
                 if(!student){
@@ -46,6 +46,8 @@ const checkQ1Availability = (req, res, next) => {
                     res.json({ success: false, error: 'Student already did quiz-2' });
                 }
             });
+    } else {
+        res.json({ success: false, error: `No quiz with id: ${quizId}` });
     }
 };
 
