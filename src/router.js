@@ -10,6 +10,7 @@ const AdminAuthMiddleware = require('./middlewares/checkAdminAuth.middleware');
 const ResultController = require('./controllers/Result.controller');
 const ActivityController = require('./controllers/Activity.controller');
 const ComparisonController = require('./controllers/Comparison.controller');
+const checkQuiz2Availability = require('./middlewares/checkQ1Availability.middleware');
 // const validations = require('./validations');
 
 const router = express.Router();
@@ -23,7 +24,7 @@ router.get('/checkState', StudentController.checkState);
 router.get('/getQuestion/:questionId', QuestionController.getQuestionById);
 
 router.get('/quizQuestionsIds/:quizId', QuizController.getQuizQuestionsIds);
-router.post('/postQuiz', [StudentAuthMiddleware.checkStudentAuth], QuizController.postQuiz);
+router.post('/postQuiz/:quizId', [StudentAuthMiddleware.checkStudentAuth, checkQuiz2Availability], QuizController.postQuiz);
 
 router.get('/getResult', [StudentAuthMiddleware.checkStudentAuth], ResultController);
 router.get('/getActivities', [StudentAuthMiddleware.checkStudentAuth], ActivityController.getActivities);
