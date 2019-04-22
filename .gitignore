@@ -3,3 +3,4 @@ node_modules/
 student/.cache/
 student/dist/
 config.env
+.DS_Store
